@@ -63,16 +63,16 @@ and open the template in the editor.
         <div>
             
             <div class="pic">
-                <img src="image/bad.jpg" alt="" width="120px" height="110px"> <br/>
-                <input type="radio" name="service" value="0"> Bad
+                <img src="image/bad.jpg" alt="" width="120px" height="110px" value="bad"> <br/>
+                <input type="radio" name="service" value="Bad"> Bad
             </div>
             <div class="pic">
-                <img src="image/neutral.jpg" alt="" width="110px" height="110px"> <br/>
-                <input type="radio" name="service" value="1"> Okay
+                <img src="image/neutral.jpg" alt="" width="110px" height="110px" value="neutral"> <br/>
+                <input type="radio" name="service" value="Okay"> Okay
             </div>
             <div class="pic">
-                <img src="image/good.jpg" alt="" width="110px" height="100px"> <br/>
-                <input type="radio" name="service" value="2"> Good
+                <img src="image/good.jpg" alt="" width="110px" height="100px" value="good"> <br/>
+                <input type="radio" name="service" value="Good"> Good
             </div>
         </div>
 
@@ -127,7 +127,11 @@ and open the template in the editor.
                 else if(!(filter_var($email, FILTER_VALIDATE_EMAIL))) {
                     echo "<script>alert('Invalid e-mail!')</script>";
                 }
-
+                
+                else if(empty($service)) {
+                        echo "<script>alert('Please select the service.')</script>";
+                }
+                
                 else{
                     //success store data and display message
                     $query = mysqli_query($store, "INSERT INTO feedback
