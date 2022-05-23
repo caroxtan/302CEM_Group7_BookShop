@@ -3,6 +3,56 @@
 	
 	echo"<h1 align='center'>Add Stock</h1>";
 	
+	include("bookshop_database.php");
+	
+	if (isset($_POST['submitted'])) {
+		$book_name = $_POST['book_name'];
+		$book_author = $_POST['book_author'];
+		$book_date = $_POST['book_date'];
+		$book_isbn13 = $_POST['book_isbn13'];
+		$book_description = $_POST['book_description'];
+		$book_trade_price = $_POST['book_trade_price'];
+		$book_retail_price = $_POST['book_retail_price'];
+		$book_quantity = $_POST['book_quantity'];
+		
+
+		$valid = true;
+
+		$book_name = mysqli_real_escape_string($store, $book_name);
+		$book_author = mysqli_real_escape_string($store, $book_author);
+		$book_date = mysqli_real_escape_string($store, $book_date);
+		$book_isbn13 = mysqli_real_escape_string($store, $book_isbn13);
+		$book_description = mysqli_real_escape_string($store, $book_description);
+		$book_trade_price = mysqli_real_escape_string($store, $book_trade_price);
+		$book_retail_price = mysqli_real_escape_string($store, $book_retail_price);
+		$book_quantity = mysqli_real_escape_string($store, $book_quantity);
+		
+		if (empty($book_name)) {
+			echo"<script>alert('You are required to enter the book name!')</script>";
+		} else if (empty($book_author)) {
+			echo"<script>alert('You are required to enter the author's name!')</script>";
+		} else if (empty($book_date)) {
+			echo"<script>alert('You are required to choose a publication date!')</script>";
+		} else if (empty($book_isbn13)) {
+			echo"<script>alert('You are required to enter the ISBN-13 number!')</script>";
+		} else if (empty($book_description)) {
+			echo"<script>alert('You are required to enter the book description!')</script>";
+		} else
+			/*$file = addslashes(file_get_contents($_FILES["book_cover"]["tmp_name"]));
+			
+			$folder = 'Image/';*/
+			
+			//Success store data and display message
+			$query = mysqli_query($store, "INSERT INTO book
+				(book_name, book_author, book_date, book_isbn13, book_description, book_trade_price, book_retail_price, book_quantity) VALUES
+				('$book_name', '$book_author', '$book_date', '$book_isbn13', '$book_description', '$book_trade_price', '$book_retail_price', '$book_quantity')");
+			if ($query) {
+				echo"<script>alert('Add stock is successful!');
+					window.location='add_stock.php'</script>";
+			}
+		
+	}
+	
 	//echo"<div class='form-center'>";
 	echo"<form action='add_stock.php' method = 'post'>";
 	
@@ -34,7 +84,11 @@
 	echo"<br /><input type='range' min='1' max='20' value='1' name='book_quantity' id='book_quantity' onchange='showRangeValueQuantity(this.value)' >";
 	echo"<input type='text' id='quantity' value='1' readonly>";
 	
-    echo"<br /><br /><input type='submit'>";
+	/*echo"<br /><br /><label>Image Cover:</label>";
+	echo"<br /><br /><input type='file' name='book_cover' id='fileUpload'>";*/
+	
+	echo "<br /><br /><input type='submit' name='submit' value='Submit' />";
+	echo "<input type='hidden' name='submitted' value='true'/>";
 	echo"</form>";
 	echo"</center>";
 ?>
