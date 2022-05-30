@@ -37,20 +37,6 @@
 			echo"<script>alert('You are required to enter the ISBN-13 number!')</script>";
 		} else if (empty($book_description)) {
 			echo"<script>alert('You are required to enter the book description!')</script>";
-		} else {
-			$file = addslashes(file_get_contents($_FILES["book_cover"]["tmp_name"]));
-			
-			//$folder = 'Image/';
-			
-			//Success store data and display message
-			$query = mysqli_query($store, "INSERT INTO book
-				(book_name, book_author, book_date, book_isbn13, book_description, book_trade_price, book_retail_price, book_quantity, book_cover) VALUES
-				('$book_name', '$book_author', '$book_date', '$book_isbn13', '$book_description', '$book_trade_price', '$book_retail_price', '$book_quantity', '$book_cover')");
-			if ($query) {
-				echo"<script>alert('Your booking is successful!');
-					window.location='add_stock.php'</script>";
-			}
-		}
 	}
 	
 	//echo"<div class='form-center'>";
@@ -83,9 +69,6 @@
 	echo"<br /><br /><label>Quantity:</label>";
 	echo"<br /><input type='range' min='1' max='20' value='1' name='book_quantity' id='book_quantity' onchange='showRangeValueQuantity(this.value)' >";
 	echo"<input type='text' id='quantity' value='1' readonly>";
-	
-	echo"<br /><br /><label>Image Cover:</label>";
-	echo"<br /><br /><input type='file' name='img' id='fileUpload'>";
 	
 	echo "<br /><br /><input type='submit' name='submit' value='Submit' />";
 	echo "<input type='hidden' name='submitted' value='true'/>";

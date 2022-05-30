@@ -28,11 +28,6 @@
            
                 echo"<tr>";
                 
-				/*if($row['book_isbn13'] == "2147483647")
-					{
-						echo"<td align = 'center'><img src='book1.png' width='150' height='200'></img></td>";
-					}*/
-				echo"<td align = 'center'><font color = 'black'>{$row['book_cover']}</font></td>";
                 echo"<td align = 'center'><font color = 'black'>{$row['book_name']}</font></td>";
                 echo"<td align = 'center'><font color = 'black'>{$row['book_isbn13']}</font></td>";
                 echo"<td align = 'center'><font color = 'black'>{$row['book_quantity']}</font></td>";

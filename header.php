@@ -6,7 +6,6 @@
 	<body>
 		<header>
 			<ul id="left-nav">
-				<li><a href=""><img src='Image/logo.png' alt='logo' width'50' height='50'/></a></li>
 			</ul>
 			
 			<ul id="right-nav">
