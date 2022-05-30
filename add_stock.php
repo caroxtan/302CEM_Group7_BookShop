@@ -1,9 +1,18 @@
 <?php
-	include('header.php');
 	
-	echo"<h1 align='center'>Add Stock</h1>";
+	session_start();
 	
 	include("bookshop_database.php");
+	
+	$admin_id = $_SESSION['admin_id'];
+	
+	if($admin_id == ''){
+		header('location:adminlogin.php');
+	}
+	
+	include('header_admin.php');
+	
+	echo"<h1 align='center'>Add Stock</h1>";
 	
 	if (isset($_POST['submitted'])) {
 		$book_name = $_POST['book_name'];
@@ -18,14 +27,14 @@
 
 		$valid = true;
 
-		$book_name = mysqli_real_escape_string($store, $book_name);
-		$book_author = mysqli_real_escape_string($store, $book_author);
-		$book_date = mysqli_real_escape_string($store, $book_date);
-		$book_isbn13 = mysqli_real_escape_string($store, $book_isbn13);
-		$book_description = mysqli_real_escape_string($store, $book_description);
-		$book_trade_price = mysqli_real_escape_string($store, $book_trade_price);
-		$book_retail_price = mysqli_real_escape_string($store, $book_retail_price);
-		$book_quantity = mysqli_real_escape_string($store, $book_quantity);
+		$book_name = mysqli_real_escape_string($combine, $book_name);
+		$book_author = mysqli_real_escape_string($combine, $book_author);
+		$book_date = mysqli_real_escape_string($combine, $book_date);
+		$book_isbn13 = mysqli_real_escape_string($combine, $book_isbn13);
+		$book_description = mysqli_real_escape_string($combine, $book_description);
+		$book_trade_price = mysqli_real_escape_string($combine, $book_trade_price);
+		$book_retail_price = mysqli_real_escape_string($combine, $book_retail_price);
+		$book_quantity = mysqli_real_escape_string($combine, $book_quantity);
 		
 		if (empty($book_name)) {
 			echo"<script>alert('You are required to enter the book name!')</script>";
@@ -42,13 +51,13 @@
 			
 			$folder = 'Image/';*/
 			
-			//Success store data and display message
-			$query = mysqli_query($store, "INSERT INTO book
+			//Success combine data and display message
+			$query = mysqli_query($combine, "INSERT INTO book
 				(book_name, book_author, book_date, book_isbn13, book_description, book_trade_price, book_retail_price, book_quantity) VALUES
 				('$book_name', '$book_author', '$book_date', '$book_isbn13', '$book_description', '$book_trade_price', '$book_retail_price', '$book_quantity')");
 			if ($query) {
 				echo"<script>alert('Add stock is successful!');
-					window.location='add_stock.php'</script>";
+					window.location='stocks_level.php'</script>";
 			}
 		
 	}
@@ -91,6 +100,7 @@
 	echo "<input type='hidden' name='submitted' value='true'/>";
 	echo"</form>";
 	echo"</center>";
+
 ?>
 
 	<script>
