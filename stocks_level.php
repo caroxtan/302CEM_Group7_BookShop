@@ -1,3 +1,28 @@
+<style>
+		.customers {
+		  font-family: Arial, Helvetica, sans-serif;
+		  border-collapse: collapse;
+		  width: 100%;
+		}
+
+		.customers td, #customers th {
+		  border: 1px solid #ddd;
+		  padding: 8px;
+		}
+
+		.customers tr:nth-child(even){background-color: #f2f2f2;}
+
+		.customers tr:hover {background-color: #ddd;}
+
+		.customers th {
+		  padding-top: 12px;
+		  padding-bottom: 12px;
+		  text-align: center;
+		  background-color: #157DEC;
+		  color: white;
+		}
+</style>
+
 <?php
 	
 	session_start();
@@ -12,6 +37,15 @@
 	
 	include('header_admin.php');
 	
+	echo"<center><br/ ><a href='stocks_level.php'><button class='button'>Stocks Level</button></a>";
+	
+	echo"&nbsp; <a href='add_stock.php'><button class='button'>Add Stock</button></a>";
+	
+	echo"&nbsp; <a href=''><button class='button'>Update Stock</button></a>";
+	
+	echo"&nbsp; <a href=''><button class='button'>Edit Stock</button></a>";
+	
+	echo"&nbsp; <a href=''><button class='button'>Delete Stock</button></a></center><br />";
 	
 	echo"<h1 align='center'>Stocks Level</h1>";
 	
@@ -19,17 +53,19 @@
 	$query = mysqli_query($combine, "SELECT * "
             . "FROM book ");
     $count = mysqli_num_rows($query);
-
+	
 	//if($r = mysqli_query($combine,$query))
 	if($count > 0)
 	{
+	   echo "<div class='customers'>";
        echo "<table align = 'center' width = '90%' border ='1'>";
        echo "<tr align = 'center'>";
             //echo"<th align='center'></th>";
-            echo"<th align='center'><font color = 'black'>Thumbnail Picture</font></th>";
-            echo"<th align='center'><font color = 'black'>Book Title</font></th>";
-            echo"<th align='center'><font color = 'black'>ISBN-13 Number</font></th>";
-            echo"<th align='center'><font color = 'black'>Quantity in Stock</font></th>";
+            echo"<th align='center'>Book Cover</th>";
+            echo"<th align='center'>Book Title</th>";
+            echo"<th align='center'>ISBN-13 Number</th>";
+            echo"<th align='center'>Quantity in Stock</th>";
+			echo"<th align='center'>Status</th>";
             
         echo"</tr>";
         //Retrieve and print every record
@@ -38,44 +74,25 @@
            
                 echo"<tr>";
                 
-				if($row['book_isbn13'] == "9781337101356")
-					{
-						echo"<td align = 'center'><img src='Image/book1.png' width='150' height='200'></img></td>";
-					}
-				else if($row['book_isbn13'] == "9781418836313")
-					{
-						echo"<td align = 'center'><img src='Image/book2.jpg' width='150' height='200'></img></td>";
-					}
-				else if($row['book_isbn13'] == "9780073516882")
-					{
-						echo"<td align = 'center'><img src='Image/book3.jpg' width='150' height='200'></img></td>";
-					}
-				else if($row['book_isbn13'] == "9780131592674")
-					{
-						echo"<td align = 'center'><img src='Image/book4.jpg' width='150' height='200'></img></td>";
-					}	
-				else if($row['book_isbn13'] == "9781439533536")
-					{
-						echo"<td align = 'center'><img src='Image/book5.jpg' width='150' height='200'></img></td>";
-					}
-				else if($row['book_isbn13'] == "9781439533536")
-					{
-						echo"<td align = 'center'><img src='Image/book5.jpg' width='150' height='200'></img></td>";
-					}
-				else if($row['book_isbn13'] == "9780471158813")
-					{
-						echo"<td align = 'center'><img src='Image/book6.jpg' width='150' height='200'></img></td>";
-					}	
+				echo"<td align = 'center'><font color = 'black'><img width='100' height='100' src='images/".$row['book_cover']."' ></font></td>";
                 echo"<td align = 'center'><font color = 'black'>{$row['book_name']}</font></td>";
                 echo"<td align = 'center'><font color = 'black'>{$row['book_isbn13']}</font></td>";
                 echo"<td align = 'center'><font color = 'black'>{$row['book_quantity']}</font></td>";
-                echo"</tr>";
-                
+				echo"<td align = 'center'><font color = 'black'>";
+				
+				if ($row['book_quantity'] < "10") {
+					echo "<font color='red'>LOW!</font>";
+				}
+				else 
+					echo "<font color='green'>Normal</font>";
+		        }
+				echo"</td>";
+
                 
         }
-	}
+	
 
-        echo "</table>";
+        echo "</table></div>";
 		
-		echo"<br/ ><br /><a href='add_stock.php'><button>Add Stock</button></a>";
+		include('footer.php');
 ?>
