@@ -52,7 +52,7 @@
 				$_SESSION['user_id'] = $user_id;
 				$_SESSION['success'] = "You are now logged in";
 				echo "<script>alert('You are now logged in.');
-					window.location='index.php'</script>";
+					window.location='view_books.php'</script>";
 					return true;
 			
 			}else {
@@ -79,7 +79,7 @@
 	
 	<body>
 	
-		<!-- include navibar.php -->
+		<!-- include header.php -->
 		<?php
 			include('header.php');
 		?>
@@ -122,6 +122,13 @@
 			
 		</div>
 		
+		<!--Footer-->
+		<?php
+			require('footer.php');
+		?>
+		<!--End Footer-->
+	
+	
 		<!-- javascript -->
 		<script> 
 			// Change the type of input to password or text 
@@ -139,11 +146,6 @@
 			} 
 		</script> 
 		
-		<!--Footer-->
-		<?php
-			require('footer.php');
-		?>
-		<!--End Footer-->
-	
+		
 	</body>
 </html>

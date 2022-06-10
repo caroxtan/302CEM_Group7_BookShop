@@ -173,7 +173,9 @@
 		?>
 		
 		<!-- Form Division -->
-		<div class = "form">
+		<br /><br />
+		
+			<div class = "form">
 		
 			<form method = "POST" action = "register.php">
 			
@@ -227,7 +229,7 @@
 				<br>
 				
 				<!-- Comfirm Password -->
-				<label><span class = "red">*</span><i class="fa fa-lock" aria-hidden="true">&nbsp; Comfirm Password : </i></label>
+				<label><span class = "red">*</span><i class="fa fa-lock" aria-hidden="true">&nbsp; Confirm Password : </i></label>
 				<br>
 				
 				<!-- Comfirm Password Visibility -->
@@ -239,8 +241,7 @@
 				
 				<!-- Policy -->
 				<p class="policy">When clicking Register button, you agree and consent to the processing
-						of your personal data in accordance with the terms of our <a href="policy.php">
-						Privacy Policy</a>.
+						of your personal data in accordance with the terms of our Privacy Policy.
 						
 						<br><br>
 						
@@ -296,4 +297,4 @@
 		
 	</body>
 	
-</html>5
+</html>
