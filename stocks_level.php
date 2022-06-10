@@ -45,8 +45,6 @@
 	
 	echo"&nbsp; <a href=''><button class='button'>Edit Stock</button></a>";
 	
-	echo"&nbsp; <a href=''><button class='button'>Delete Stock</button></a></center><br />";
-	
 	echo"<h1 align='center'>Stocks Level</h1>";
 	
 	//$query = "SELECT * FROM book ";
@@ -65,6 +63,7 @@
             echo"<th align='center'>Book Title</th>";
             echo"<th align='center'>ISBN-13 Number</th>";
             echo"<th align='center'>Quantity in Stock</th>";
+			echo"<th align='center'>Action</th>";
 			echo"<th align='center'>Status</th>";
             
         echo"</tr>";
@@ -78,19 +77,23 @@
                 echo"<td align = 'center'><font color = 'black'>{$row['book_name']}</font></td>";
                 echo"<td align = 'center'><font color = 'black'>{$row['book_isbn13']}</font></td>";
                 echo"<td align = 'center'><font color = 'black'>{$row['book_quantity']}</font></td>";
-				echo"<td align = 'center'><font color = 'black'>";
+				echo"<td align = 'center'><a href =''><font color='blue'>EDIT</font></a> <br /><br /> <a href ='delete_stock.php?delete=".$row['book_isbn13']."'><font color='red'>DELETE</font></a></td>";
+				echo"<td align = 'center'>";
 				
 				if ($row['book_quantity'] < "10") {
-					echo "<font color='red'>LOW!</font>";
+					echo "<font color='red'>LOW!</font></td>";
 				}
 				else 
-					echo "<font color='green'>Normal</font>";
+					echo "<font color='green'>Normal</font></td>";
 		        }
 				echo"</td>";
-
-                
         }
-	
+		
+		if (isset($GET['delete'])){
+			$book_isbn13 = $_GET['delete'];
+			$query = mysqli_query($combine, "DELETE FROM book WHERE book_isbn13=$book_isbn13");
+		};
+		
 
         echo "</table></div>";
 		
