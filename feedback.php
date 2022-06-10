@@ -1,44 +1,24 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Feedback Form</title>
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+<style>
+	.pic{text-align:left; width:33%; float:left;}
+</style>
         
-        <style>
-        *{box-sizing:border-box;}
-        body{font-family: 'Open Sans', sans-serif; color:#333; font-size:14px; background-color:#dadada; padding:100px;}
-        .form_box{height:80%; width:100%; padding:10px; background-color:white;}
-        input{padding:5px;  margin-bottom:5px;}
-        input[type="submit"]{border:none; outlin:black; background-color:#679f1b; color:white;}
-        .heading{background-color:#0D98BA; color:white; height:40px; width:100%; line-height:40px; text-align:center;}
-        .shadow{
-            -webkit-box-shadow: 0px 0px 17px 1px rgba(0,0,0,0.43);
-            -moz-box-shadow: 0px 0px 17px 1px rgba(0,0,0,0.43);
-            box-shadow: 0px 0px 17px 1px rgba(0,0,0,0.43);}
-        .pic{text-align:left; width:33%; float:left;}
-        
-        input[type=text], select, textarea {    
-            width: 100%;    
-            padding: 10px;    
-            border: 1px solid rgb(70, 68, 68);    
-            border-radius: 4px;    
-            resize: vertical;    
-          }  
-        </style>
-    </head>
-    
-    <body>
-        <div class="form_box shadow">
+
+<?php
+
+	session_start();
+	include("bookshop_database.php");
+	$username = $_SESSION['username'];
+	
+	if($username == ''){
+		header('location:login.php');
+	}
+	
+	include('header.php');
+		?>
+        <div class="form-style-5">
             <form method="post" action="feedback.php">
-        <div class="heading">
-            Book's shop Feedback Form
-        </div>
+		
+		<h1 align="center">Feedback Form</h1>
                 
         <br/><br/>
         <div>
@@ -63,15 +43,15 @@ and open the template in the editor.
         <div>
             
             <div class="pic">
-                <img src="image/bad.jpg" alt="" width="120px" height="110px" value="bad"> <br/>
+                <img src="images/bad.jpg" alt="" width="120px" height="110px" value="bad"> <br/>
                 <input type="radio" name="service" value="Bad"> Bad
             </div>
             <div class="pic">
-                <img src="image/neutral.jpg" alt="" width="110px" height="110px" value="neutral"> <br/>
+                <img src="images/neutral.jpg" alt="" width="110px" height="110px" value="neutral"> <br/>
                 <input type="radio" name="service" value="Okay"> Okay
             </div>
             <div class="pic">
-                <img src="image/good.jpg" alt="" width="110px" height="100px" value="good"> <br/>
+                <img src="images/good.jpg" alt="" width="110px" height="100px" value="good"> <br/>
                 <input type="radio" name="service" value="Good"> Good
             </div>
         </div>
@@ -86,10 +66,16 @@ and open the template in the editor.
          
        </form>
      </div>
-        
+       
+	   
+	   <!-- Footer -->
+		<?php	
+			include("footer.php");
+		?>
+		<!-- End Footer -->
         
     <?php
-    include("bookstore_database.php");
+    include("bookshop_database.php");
         if (isset($_POST['submitted'])) {
 
                 $fname = $_POST['fname'];
@@ -98,11 +84,11 @@ and open the template in the editor.
                 $service = $_POST['service'];
                 $suggestion = $_POST['suggestion'];
 
-                $fname = mysqli_real_escape_string($store, $fname);
-                $lname = mysqli_real_escape_string($store, $lname);
-                $email = mysqli_real_escape_string($store, $email);
-                $service = mysqli_real_escape_string($store, $service);
-                $suggestion = mysqli_real_escape_string($store, $suggestion);
+                $fname = mysqli_real_escape_string($combine, $fname);
+                $lname = mysqli_real_escape_string($combine, $lname);
+                $email = mysqli_real_escape_string($combine, $email);
+                $service = mysqli_real_escape_string($combine, $service);
+                $suggestion = mysqli_real_escape_string($combine, $suggestion);
 
                 if(empty($fname)) {
                     echo "<script>alert('First name required!')</script>";
@@ -133,14 +119,14 @@ and open the template in the editor.
                 }
                 
                 else{
-                    //success store data and display message
-                    $query = mysqli_query($store, "INSERT INTO feedback
+                    //success combine data and display message
+                    $query = mysqli_query($combine, "INSERT INTO feedback
                         (fname, lname, email, service, suggestion ) VALUES
                         ('$fname', '$lname', '$email ', '$service', '$suggestion')");
                         if ($query)
                         {
                             echo "<script>alert('Thanks for your feedback!');
-                                window.location='feedback.php'</script>";
+                                window.location='view_books.php'</script>";
                         }
                 }
 
