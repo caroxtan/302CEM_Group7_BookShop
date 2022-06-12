@@ -85,8 +85,8 @@
 		
 		if (empty($book_name)) {
 			echo"<script>alert('You are required to enter the book name!')</script>";
-		} else if (empty($book_author)) {
-			echo"<script>alert('You are required to enter the author's name!')</script>";
+		} else if (empty($book_author)){
+			echo"<script>alert('You are required to enter the author name!')</script>";
 		} else if (empty($book_date)) {
 			echo"<script>alert('You are required to choose a publication date!')</script>";
 		} else if (empty($book_isbn13)) {
@@ -95,27 +95,58 @@
 			echo"<script>alert('You are required to enter the book description!')</script>";
 		} else if (empty($book_category)) {
 			echo"<script>alert('You are required to enter the book category!')</script>";
-		} else
+		} else {
 			
-			$target = "images/".basename($_FILES['book_cover']['name']);
-			
-			if (move_uploaded_file($_FILES['book_cover']['tmp_name'], $target)) {
-				$msg = "Image uploaded successfully";
-			}else{
-			$msg = "There was a problem uploading image";
-			}
-			/*$file = addslashes(file_get_contents($_FILES["book_cover"]["tmp_name"]));
-			
-			$folder = 'Image/';*/
-			
-			//Success combine data and display message
-			$query = mysqli_query($combine, "INSERT INTO book
-				(book_name, book_author, book_date, book_isbn13, book_description, book_category, book_trade_price, book_retail_price, book_quantity, book_cover) VALUES
-				('$book_name', '$book_author', '$book_date', '$book_isbn13', '$book_description', '$book_category', '$book_trade_price', '$book_retail_price', '$book_quantity', '$book_cover')");
-			if ($query) {
-				echo"<script>alert('Add stock is successful!');
+			$sql="SELECT * FROM book WHERE book_isbn13='$book_isbn13'";
+			$result=mysqli_query($combine,$sql);
+			$row=mysqli_fetch_array($result, MYSQLI_ASSOC);
+			if(mysqli_num_rows($result)== 1)
+			{
+	
+				//edit user profile 
+				$sqlEditing="UPDATE `book` SET `book_name`='$book_name',`book_author`='$book_author',
+				`book_date`='$book_date',`book_isbn13`='$book_isbn13',`book_description`='$book_description',`book_category`='$book_category', `book_trade_price`='$book_trade_price', `book_retail_price`='$book_retail_price', `book_quantity`='$book_quantity' WHERE `book`.`book_isbn13`='$book_isbn13'";
+				
+				//successful edited
+				if($combine->query($sqlEditing)===TRUE){
+					
+					echo"<script>alert('Stock successfully edited!');
 					window.location='stocks_level.php'</script>";
+				}else{
+					//fail edit
+					echo "<script>alert('Stock not successfully updated!');
+					window.location='stocks_level.php'</script>";
+					
+				}	
 			}
+			else {
+			
+				$target = "images/".basename($_FILES['book_cover']['name']);
+				
+				if (move_uploaded_file($_FILES['book_cover']['tmp_name'], $target)) {
+					$msg = "Image uploaded successfully";
+				}else{
+				$msg = "There was a problem uploading image";
+				}
+				/*$file = addslashes(file_get_contents($_FILES["book_cover"]["tmp_name"]));
+				
+				$folder = 'Image/';*/
+				
+				
+				//Success combine data and display message
+				$query = mysqli_query($combine, "INSERT INTO book
+					(book_name, book_author, book_date, book_isbn13, book_description, book_category, book_trade_price, book_retail_price, book_quantity, book_cover) VALUES
+					('$book_name', '$book_author', '$book_date', '$book_isbn13', '$book_description', '$book_category', '$book_trade_price', '$book_retail_price', '$book_quantity', '$book_cover')");
+				if ($query) {
+					echo"<script>alert('Add stock is successful!');
+						window.location='stocks_level.php'</script>";
+					}
+				else{
+					echo "<script>alert('Add stock is not successful!');
+					window.location='login.php'</script>";
+				}
+			}
+		}
 		
 	}
 	echo"<div class='form-style-5'>";

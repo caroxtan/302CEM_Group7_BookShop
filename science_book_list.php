@@ -113,7 +113,7 @@
 				echo"<td align = 'center'><font color = 'black'>{$row['book_category']}</font></td>";
                 echo"<td align = 'center'><font color = 'black'>{$row['book_isbn13']}</font></td>";
                 echo"<td align = 'center'><font color = 'black'>{$row['book_quantity']}</font></td>";
-				echo"<td align = 'center'><a href =''><font color='blue'>EDIT</font></a> <br /><br /> <a href ='delete_stock.php?delete=".$row['book_isbn13']."'><font color='red'>DELETE</font></a></td>";
+				echo"<td align = 'center'><a href ='edit_stock.php?edit=".$row['book_isbn13']."'><font color='blue'>EDIT</font></a> <br /><br /> <a href ='delete_stock.php?delete=".$row['book_isbn13']."'><font color='red'>DELETE</font></a></td>";
 				echo"<td align = 'center'>";
 				
 				if ($row['book_quantity'] < "10") {
