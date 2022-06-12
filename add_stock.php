@@ -1,8 +1,42 @@
+<style>
+		.sidenav {
+		  width: 130px;
+		  position: fixed;
+		  z-index: 1;
+		  top: 100px;
+		  left: 10px;
+		  bottom: 100px;
+		  overflow-x: hidden;
+		  padding: 8px 0;
+		}
+
+		.sidenav a {
+		  padding: 6px 8px 6px 16px;
+		  text-decoration: none;
+		  color: #2196F3;
+		  display: block;
+		}
+
+		.sidenav a:hover {
+		  color: #064579;
+		}
+
+		.main {
+		  margin-left: 140px; /* Same width as the sidebar + left position in px */
+		  padding: 0px 10px;
+		}
+
+		@media screen and (max-height: 450px) {
+		  .sidenav {padding-top: 15px;}
+		  .sidenav a {font-size: 18px;}
+		}
+</style>
+
 <?php
 	
 	session_start();
 	
-	include("bookshop_database.php");
+	include('bookshop_database.php');
 	
 	$admin_id = $_SESSION['admin_id'];
 	
@@ -11,16 +45,16 @@
 	}
 	
 	include('header_admin.php');
-	
-	echo"<center><br/ ><a href='stocks_level.php'><button class='button'>Stocks Level</button></a>";
-	
-	echo"&nbsp; <a href='add_stock.php'><button class='button'>Add Stock</button></a>";
-	
-	echo"&nbsp; <a href=''><button class='button'>Update Stock</button></a>";
-	
-	echo"&nbsp; <a href=''><button class='button'>Edit Stock</button></a>";
-	
-	echo"&nbsp; <a href=''><button class='button'>Delete Stock</button></a></center><br />";
+
+	echo "<div class='sidenav'>";
+		echo "<a href='add_stock.php'><font color='green'><b>ADD STOCK</b></font></a>";
+		echo "<a href='stocks_level.php'><font color='black'><b>STOCKS LEVEL</b></font></a>";
+		echo "<a href='it_book_list.php'><font color='black'>Information Technology</font></a>";
+		echo "<a href='cs_book_list.php'><font color='black'>Computer Science</font></a>";
+	    echo "<a href='maths_book_list.php'><font color='black'>Mathematics</font></a>";
+		echo "<a href='science_book_list.php'><font color='black'>Science</font></a>";
+	echo"</div>";
+	echo"<div class='main'>";
 	
 	echo"<h1 align='center'>Add Stock</h1>";
 	
@@ -124,8 +158,10 @@
 	echo"<br /><br /><input type='file' name='book_cover' id='book_cover'>";
 	
 	echo "<br /><br /><input type='submit' name='submit' value='Submit'>";
-	echo"</form></div>";
+	echo"</form></div></div>";
 	echo"</center>";
+	
+	echo"<br />";
 	
 	include('footer.php');
 
