@@ -62,6 +62,8 @@
 	echo"<div class='main'>";
 	
 	echo"<h1 align='center'>Edit Stock</h1>";
+	
+	$current_date = date("Y-m-d");
 
 	echo"<div class='form-style-5'>";
 	echo"<form action='edit_stock2.php' method = 'get' enctype='multipart/form-data'>";
@@ -76,7 +78,7 @@
     echo"<br /><input type='text' id='book_author' name='book_author' placeholder='Book Author' value='".$row['book_author']."' size='50'>";
 	
 	echo"<br /><br /><label>Publication Date:</label>";
-    echo"<br /><input type='date' id='book_date' name='book_date' placeholder='Publication Date' value='".$row['book_date']."' size='50'>";
+    echo"<br /><input type='date' id='book_date' name='book_date' placeholder='Publication Date' max='$current_date' value='".$row['book_date']."' size='50'>";
 	
 	echo"<br /><br /><label>ISBN-13 Number:</label>";
     echo"<br /><input type='text' id='book_isbn13' name='book_isbn13' placeholder='ISBN-13 Number' value='".$row['book_isbn13']."'  size='50'>";

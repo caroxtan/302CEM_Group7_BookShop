@@ -149,6 +149,9 @@
 		}
 		
 	}
+	
+	$current_date = date("Y-m-d");
+
 	echo"<div class='form-style-5'>";
 	echo"<form action='add_stock.php' method = 'post' enctype='multipart/form-data'>";
 	
@@ -162,7 +165,7 @@
     echo"<br /><input type='text' id='book_author' name='book_author' placeholder='Book Author' size='50'>";
 	
 	echo"<br /><br /><label>Publication Date:</label>";
-    echo"<br /><input type='date' id='book_date' name='book_date' placeholder='Publication Date' size='50'>";
+    echo"<br /><input type='date' id='book_date' name='book_date' placeholder='Publication Date' max='$current_date' size='50'>";
 	
 	echo"<br /><br /><label>ISBN-13 Number:</label>";
     echo"<br /><input type='text' id='book_isbn13' name='book_isbn13' placeholder='ISBN-13 Number' size='50'>";
