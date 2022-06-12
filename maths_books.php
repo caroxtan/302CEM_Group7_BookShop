@@ -55,12 +55,12 @@
 	echo"<div class='main'>";
 	
 	
-	echo"<h1 align='center'>View Books</h1>";
+	echo"<h1 align='center'>Mathematics</h1>";
 
 	$max_columns = 4;
 	//$query = "SELECT * FROM book ";
 	$query = mysqli_query($combine, "SELECT * "
-            . "FROM book ");
+            . "FROM book WHERE book_category='Mathematics'");
     $count = mysqli_num_rows($query);
 
 	//if($r = mysqli_query($combine,$query))
@@ -96,6 +96,8 @@
 	}
 
         echo "</table>";
+		
+		echo"<br /><br /><br /><br /><br /><br />";
 		
 		echo"<br /><center><a href='feedback.php'><button class='button'>Feedback</button></a></center></div>";
 		
