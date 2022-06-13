@@ -45,14 +45,11 @@
 			$sql="SELECT * FROM user WHERE username='$username' AND password='$password' ";
 			$result=mysqli_query($combine,$sql);
 			$row=mysqli_fetch_array($result);
-			$user_id = $row['user_id'];
+			$username = $row['username'];
 			if(mysqli_num_rows($result)== 1)
 			{
 				$_SESSION['username'] = $username;
-				$_SESSION['user_id'] = $user_id;
-				$_SESSION['success'] = "You are now logged in";
 				echo "<script>alert('You are now logged in.');
-
 					return true;
 			
 			}else {
@@ -78,7 +75,7 @@
 	</head>
 	
 	<body>
-	
+
 		<?php
 			include('header.php');
 		?>
@@ -138,6 +135,5 @@
 			} 
 		</script> 
 		
-
 	</body>
 </html>

@@ -4,6 +4,7 @@
 	<!-- Navibar -->
 	<?php
 
+
 	<!-- End CSS -->
 	
 	<!-- Head -->
@@ -42,7 +43,6 @@
 			{
 				echo"<script>alert('Please enter your admin ID!')</script>";
 			}
-
 			//Email validation
 			else if (empty($admin_email))
 			{
@@ -212,6 +212,7 @@
 				<br>
 				
 				<!-- Comfirm Password -->
+
 				<br>
 				
 				<!-- Comfirm Password Visibility -->
