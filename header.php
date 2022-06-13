@@ -19,7 +19,6 @@
 	<body>
 		<header>
 			<ul id="left-nav">
-				<li><a href="view_books.php"><img src='Images/logo.png' alt='logo' width'50' height='50'/></a></li>
 			</ul>
 			
 			<ul id="right-nav">

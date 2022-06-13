@@ -102,7 +102,7 @@
 				color: white;
 			}
 		</style>
-		<link rel = "stylesheet" href="register_login.css">
+
 		<link rel = "stylesheet" href="forgetPassword.css">
 		<link rel = "stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 		
@@ -113,10 +113,6 @@
 		<?php
 			include('header.php');
 		?>
-		
-		<div class="form">
-			<form action="" method="POST">
-				<h3><center>Forget Password</center></h3>
 				<p style="float:left;"><i class="fa fa-user" aria-hidden="true">&nbsp; Username</i></p>
 					<input type = "text" name = "username" value= "<?php if(isset($_POST["username"])) echo $_POST["username"]; ?>"
 					placeholder = "Enter Username"></input>

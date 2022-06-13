@@ -107,7 +107,6 @@
            
                 echo"<tr>";
                 
-				echo"<td align = 'center'><font color = 'black'><img width='100' height='100' src='images/".$row['book_cover']."' ></font></td>";
                 echo"<td align = 'center'><font color = 'black'>{$row['book_name']}</font></td>";
 				echo"<td align = 'center'><font color = 'black'>{$row['book_category']}</font></td>";
                 echo"<td align = 'center'><font color = 'black'>{$row['book_isbn13']}</font></td>";
