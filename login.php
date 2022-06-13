@@ -52,7 +52,7 @@
 				$_SESSION['user_id'] = $user_id;
 				$_SESSION['success'] = "You are now logged in";
 				echo "<script>alert('You are now logged in.');
-					window.location='index.php'</script>";
+
 					return true;
 			
 			}else {
@@ -79,7 +79,6 @@
 	
 	<body>
 	
-		<!-- include navibar.php -->
 		<?php
 			include('header.php');
 		?>
@@ -121,7 +120,7 @@
 			</form>
 			
 		</div>
-		
+
 		<!-- javascript -->
 		<script> 
 			// Change the type of input to password or text 
@@ -139,11 +138,6 @@
 			} 
 		</script> 
 		
-		<!--Footer-->
-		<?php
-			require('footer.php');
-		?>
-		<!--End Footer-->
-	
+
 	</body>
 </html>

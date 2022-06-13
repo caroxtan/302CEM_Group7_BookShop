@@ -3,113 +3,14 @@
 
 	<!-- Navibar -->
 	<?php
-		include("header.php");
-    ?>
-	
-	<!-- CSS -->
-	<style>
-		
-		body
-		{
-			margin:0;
-			padding:0;
-			font-family : sans-serif;
-		}
-		
-		.form
-		{
-			width : 800px;
-			border: 1px solid #000000;
-			margin: 4% auto 0;
-			margin-bottom: 55px;
-			color : #000000;
-			padding-top: 120px;
-			padding : 70px 30px;
-		}
-					
-		form
-		{
-			padding:20px;
-		}
-		
-		input[type=text], input[type=password]
-		{
-			width: 95%;
-			padding : 10px;
-			margin : 5px 0 22px 0;
-			border : none;
-			border-bottom : 2px solid #000000;
-			background: transparent;
-			outline : none;
-			font-size : 16px;
-			color:black;
-		}
-		
-		input[type=text] : focus, input[type=password]:focus
-		{
-			background-color : #ddd;
-			outline : none;
-		}
-				
-		input[type=submit]
-		{
-			background-color : red;
-			color :  white;
-			width : 100%;
-			padding : 10px;
-			border : none;
-			border-radius : 20px;
-			font-size : 20px;
-		}
-		input[type = submit]:hover
-		{
-			cursor : pointer;
-			background : #00008B;
-			color :  white;
-		}
-		
-		.policy
-		{
-			font-size : 20px;
-		}
-		.policy a
-		{
-			color:blue;
-			text-decoration:none;
-			font-size : 20px;
-			line-height:20px;
-		}
-		
-		.policy a:hover
-		{
-			color : white;
-		}
-		
-		.red
-		{
-			color : red;
-		}
-		
-		.visible i
-		{
-			position : absolute;
-			margin : 15px 0px 0px -30px;
-			cursor : pointer;
-		}
-		
-		i.fa-eye
-		{
-			margin-top:10px;
-		}
-		
-	</style>
+
 	<!-- End CSS -->
 	
 	<!-- Head -->
 	<head>
 		<title> Admin Register </title>
 		<meta charset = "utf-8">
-		<link rel = "stylesheet" href="css/themify-icon.css">
+
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">	
 	</head>
@@ -141,11 +42,7 @@
 			{
 				echo"<script>alert('Please enter your admin ID!')</script>";
 			}
-			else if (!preg_match("/^[A-Z]{1}[0-9]{5}$/",$admin_id))
-			{
-				echo"<script>alert('Please enter valid admin number! (e.g S12345)') </script>";
-			}
-			
+
 			//Email validation
 			else if (empty($admin_email))
 			{
@@ -265,11 +162,10 @@
 		<!-- End Validation -->
 		
 		<!-- Form Division -->
+
 		<div class = "form">
 		
 			<form method = "POST" action = "admin_register.php">
-			
-				<h1><center>Admin Register</center></h1>
 			
 				<!-- Username -->
 				<label><span class ="red">*</span><i class="fa fa-user" aria-hidden="true">&nbsp; Admin ID : </i></label>
@@ -316,7 +212,6 @@
 				<br>
 				
 				<!-- Comfirm Password -->
-				<label><span class = "red">*</span><i class="fa fa-lock" aria-hidden="true">&nbsp; Comfirm Password : </i></label>
 				<br>
 				
 				<!-- Comfirm Password Visibility -->
