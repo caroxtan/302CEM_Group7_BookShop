@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <?php
+
 	$result = mysqli_query($combine, $sql);
 	$row= mysqli_fetch_array($result, MYSQLI_ASSOC);
 	
 	//receive data
+
 	
 	
 ?>
@@ -50,9 +52,6 @@
 	</head>
 	<body>
 
-		
-		<br/><br/>
-		
 	</body>
 </html>
 		
