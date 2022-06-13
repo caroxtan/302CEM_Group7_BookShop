@@ -3,8 +3,26 @@
 	session_start();
 	//connection to database
 	include('bookshop_database.php');
-
+	$username = $_SESSION['username'];
 	$status="";
+	
+	
+	if(isset($_POST['add_to_cart']))
+	{
+		$username =  $_POST['username'];
+		$book_id = $_POST['book_id'];
+		$quantity = $_POST['quantity'];
+
+		$username=mysqli_real_escape_string($combine, $username);
+		$book_id=mysqli_real_escape_string($combine, $book_id);
+		$quantity=mysqli_real_escape_string($combine, $quantity);
+		
+		//success store data and display message
+		$query = mysqli_query($combine, "INSERT INTO user_shopping_cart
+			(username, book_id, quantity) VALUES
+			('$username', '$book_id', '$quantity')");
+		
+	}
 	
 	//print out all book from database
 	if (isset($_POST['book_id']) && $_POST['book_id']!=""){
@@ -178,10 +196,11 @@
 						echo "<tr>";
 					}
 					echo"<form method='post' action=''>";
+					echo" <input type='hidden' name='book_id' Value= ".$row['book_id']. "'/>";
 					echo"<td><img width='150' height='200' src='images/".$row['book_cover']."'></td>";
 					
-					echo"<td width='40%'><b>{$row['book_name']}</b> <br /> {$row['book_description']} <br /><br /> Category: {$row['book_category']} <br /> Publishing Date: {$row['book_date']} 
-					<br /> Price: RM{$row['book_retail_price']}<br />";
+					echo"<td width='40%'><b>".$row['book_name']."</b> <br /> ".$row['book_description']." <br /><br /> Category: ".$row['book_category']." <br /> Publishing Date: ".$row['book_date']." 
+					<br /> Price: RM".$row['book_retail_price']."<br />";
 					echo "<button type='submit' name='add_to_cart' class='add_to_cart'>Add To Cart</button>";
 					echo "</td>";
 					
@@ -193,7 +212,8 @@
 					$i++;
 				
 			}  
-			
+			echo" <input type='hidden' name='username' Value= ".$_SESSION['username']." />";
+			echo" <input type='hidden' name='quantity' Value=1/>";
 			echo "</table></form></div>";
 
 			?>

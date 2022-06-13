@@ -13,7 +13,7 @@
 		  if($_POST["book_id"] == $key){
 		  unset($_SESSION["shopping_cart"][$key]);
 		  $status = "<div class='box' style='color:red;'>
-		  book is removed from your cart!</div>";
+		  Book is removed from your cart!</div>";
 		  }
 		  if(empty($_SESSION["shopping_cart"]))
 		  unset($_SESSION["shopping_cart"]);
@@ -42,9 +42,85 @@
 		<link rel = "stylesheet" type = "text/css" href = "profile.css"/>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 	
+	
+	<style>
+		.payment_btn{
+			background-color:transparent;
+			color: #FFD700;
+			padding: 10px;
+			margin: 10px 0;
+			border: 2px solid #FFD700;
+			width: 100%;
+			border-radius: 10px;
+			cursor: pointer;
+			font-size: 20px;
+			margin-top: 50px;
+		}
+		.payment_btn:hover
+		{
+			color: black;
+			background-color: #FFD700;
+			
+		}
+		.customers {
+		  font-family: Arial, Helvetica, sans-serif;
+		  border-collapse: collapse;
+		  width: 100%;
+		}
+
+		.customers td, #customers th {
+		  border: 1px solid #ddd;
+		  padding: 8px;
+		}
+
+		.customers tr:nth-child(even){background-color: #f2f2f2;}
+
+		.customers tr:hover {background-color: #ddd;}
+
+		.customers th {
+		  padding-top: 12px;
+		  padding-bottom: 12px;
+		  text-align: center;
+		  background-color: #157DEC;
+		  color: white;
+		}
+		.sidenav {
+		  width: 130px;
+		  position: fixed;
+		  z-index: 1;
+		  top: 100px;
+		  left: 10px;
+		  bottom: 100px;
+		  overflow-x: hidden;
+		  padding: 8px 0;
+		}
+
+		.sidenav a {
+		  padding: 6px 8px 6px 16px;
+		  text-decoration: none;
+		  color: #2196F3;
+		  display: block;
+		}
+
+		.sidenav a:hover {
+		  color: #064579;
+		}
+
+		.main {
+		  margin-left: 140px; /* Same width as the sidebar + left position in px */
+		  padding: 0px 10px;
+		}
+
+		@media screen and (max-height: 450px) {
+		  .sidenav {padding-top: 15px;}
+		  .sidenav a {font-size: 18px;}
+		}
+		
+		
+	</style>
 	</head>
 	
-	<body>
+	<body height="100%">
 		<!-- Header-->
 		<?php
 			include('header.php');
@@ -65,7 +141,7 @@
 		if(isset($_SESSION["shopping_cart"])){
 		$total_price = 0;
 	?>
-		<table class="table">
+		<table class="table" align='center' width='80%'>
 			<tr>
 				<th style="align:center;" colspan="5"><h2 style="font_size:+4">CART</h2></th>
 			</tr>
@@ -83,7 +159,7 @@
 			?>
 			<tr>
 				<td>
-					<img src='Image/<?php echo $book["book_cover"]; ?>' width="50" height="40" />
+					<img src='images/<?php echo $book["book_cover"]; ?>' width="50" height="40" />
 				</td>
 				<td>
 					<?php echo $book["book_name"]; ?><br />
@@ -112,14 +188,14 @@
 					</form>
 				</td>
 				<td>
-					<?php echo "RM".$book["book_retail_price"]; ?>
+					<?php echo "RM".$book["price"]; ?>
 				</td>
 				<td>
-					<?php echo "RM".$book["book_retail_price"]*$book["quantity"]; ?>
+					<?php echo "RM".$book["price"]*$book["quantity"]; ?>
 				</td>
 			</tr>
 			<?php
-				$total_price += ($book["book_retail_price"]*$book["quantity"]);
+				$total_price += ($book["price"]*$book["quantity"]);
 			}
 			?>
 			<tr>
@@ -135,7 +211,7 @@
 		</table> 
 		<?php
 		}else{
-		 echo "<h3>Your cart is empty!</h3>";
+		 echo "<h3 align='center'>Your cart is empty!</h3>";
 		 }
 		?>
 	</div>
