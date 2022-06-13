@@ -50,7 +50,6 @@
 			{
 				$_SESSION['username'] = $username;
 				echo "<script>alert('You are now logged in.');
-					window.location='view_books.php'</script>";
 					return true;
 			
 			}else {
@@ -76,8 +75,7 @@
 	</head>
 	
 	<body>
-	
-		<!-- include header.php -->
+
 		<?php
 			include('header.php');
 		?>
@@ -119,14 +117,7 @@
 			</form>
 			
 		</div>
-		
-		<!--Footer-->
-		<?php
-			require('footer.php');
-		?>
-		<!--End Footer-->
-	
-	
+
 		<!-- javascript -->
 		<script> 
 			// Change the type of input to password or text 
@@ -143,7 +134,6 @@
 				} 
 			} 
 		</script> 
-		
 		
 	</body>
 </html>

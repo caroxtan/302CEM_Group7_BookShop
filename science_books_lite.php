@@ -79,13 +79,13 @@
 	echo"</div>";
 	echo"<div class='main'>";
 	
-	echo"<h1 align='center'>View Books</h1>";
+	echo"<h1 align='center'>Science</h1>";
 
 
 	$max_columns = 4;
 	//$query = "SELECT * FROM book ";
 	$query = mysqli_query($combine, "SELECT * "
-            . "FROM book ");
+            . "FROM book WHERE book_category='Science'");
     $count = mysqli_num_rows($query);
 
 	//if($r = mysqli_query($combine,$query))
@@ -121,6 +121,8 @@
 	}
 
         echo "</table></div>";
+		
+		echo"<br /><br /><br /><br /><br /><br /><br /><br /><br /><br />";
 		
 		include('footer.php');
 

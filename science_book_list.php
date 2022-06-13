@@ -78,11 +78,12 @@
 		echo "<a href='science_book_list.php'><font color='black'>Science</font></a>";
 	echo"</div>";
 	echo"<div class='main'>";
-	echo"<h1 align='center'>Stocks Level</h1>";
+	
+	echo"<h1 align='center'>Science</h1>";
 	
 	//$query = "SELECT * FROM book ";
 	$query = mysqli_query($combine, "SELECT * "
-            . "FROM book ");
+            . "FROM book WHERE book_category='Science'");
     $count = mysqli_num_rows($query);
 	
 	//if($r = mysqli_query($combine,$query))
@@ -107,6 +108,7 @@
            
                 echo"<tr>";
                 
+				echo"<td align = 'center'><font color = 'black'><img width='100' height='100' src='images/".$row['book_cover']."' ></font></td>";
                 echo"<td align = 'center'><font color = 'black'>{$row['book_name']}</font></td>";
 				echo"<td align = 'center'><font color = 'black'>{$row['book_category']}</font></td>";
                 echo"<td align = 'center'><font color = 'black'>{$row['book_isbn13']}</font></td>";
@@ -122,10 +124,10 @@
 		        }
 				echo"</td>";
         }
-		
+	
         echo "</table></div></div>";
 		
-		include('footer.php');
+		echo "<br /><br /><br /><br />";
 		
-
+		include('footer.php');
 ?>

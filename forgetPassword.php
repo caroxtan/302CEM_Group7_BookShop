@@ -102,7 +102,7 @@
 				color: white;
 			}
 		</style>
-		<link rel = "stylesheet" href="css/themify-icon.css">
+
 		<link rel = "stylesheet" href="forgetPassword.css">
 		<link rel = "stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 		
@@ -113,10 +113,6 @@
 		<?php
 			include('header.php');
 		?>
-		
-		<div class="forget_pass">
-			<h1 style="float:center">Forget Password</h1>
-			<form action="" method="POST">
 				<p style="float:left;"><i class="fa fa-user" aria-hidden="true">&nbsp; Username</i></p>
 					<input type = "text" name = "username" value= "<?php if(isset($_POST["username"])) echo $_POST["username"]; ?>"
 					placeholder = "Enter Username"></input>
