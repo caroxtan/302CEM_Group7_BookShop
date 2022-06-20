@@ -81,7 +81,7 @@
     echo"<br /><input type='date' id='book_date' name='book_date' placeholder='Publication Date' max='$current_date' value='".$row['book_date']."' size='50'>";
 	
 	echo"<br /><br /><label>ISBN-13 Number:</label>";
-    echo"<br /><input type='text' id='book_isbn13' name='book_isbn13' placeholder='ISBN-13 Number' value='".$row['book_isbn13']."'  size='50'>";
+    echo"<br /><input type='text' id='book_isbn13' name='book_isbn13' placeholder='ISBN-13 Number' value='".$row['book_isbn13']."'  size='50' readonly>";
 	
 	echo"<br /><br /><label>Book Description:</label>";
 	echo"<br /><textarea rows = '5' cols = '48' id='book_description' name='book_description' placeholder='Book Description'>".$row['book_description']."</textarea>";
