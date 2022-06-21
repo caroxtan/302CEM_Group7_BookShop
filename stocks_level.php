@@ -76,6 +76,7 @@
 		echo "<a href='cs_book_list.php'><font color='black'>Computer Science</font></a>";
 	    echo "<a href='maths_book_list.php'><font color='black'>Mathematics</font></a>";
 		echo "<a href='science_book_list.php'><font color='black'>Science</font></a>";
+		echo "<a href='adminViewFeedback.php'><font color='green'><b>FEEDBACK LIST</b></font></a>";
 	echo"</div>";
 	echo"<div class='main'>";
 	echo"<h1 align='center'>Stocks Level</h1>";
@@ -107,11 +108,12 @@
            
                 echo"<tr>";
                 
+				echo"<td align = 'center'><font color = 'black'><img width='100' height='100' src='images/".$row['book_cover']."' ></font></td>";
                 echo"<td align = 'center'><font color = 'black'>{$row['book_name']}</font></td>";
 				echo"<td align = 'center'><font color = 'black'>{$row['book_category']}</font></td>";
                 echo"<td align = 'center'><font color = 'black'>{$row['book_isbn13']}</font></td>";
                 echo"<td align = 'center'><font color = 'black'>{$row['book_quantity']}</font></td>";
-				echo"<td align = 'center'><a href ='edit_stock.php?edit=".$row['book_isbn13']."'><font color='blue'>EDIT</font></a> <br /><br /> <a href ='delete_stock.php?delete=".$row['book_isbn13']."'><font color='red'>DELETE</font></a></td>";
+				echo"<td align = 'center'><a href ='addon_stock.php?addon=".$row['book_isbn13']."'><font color='green'>ADD</font></a> <br /><br /> <a href ='edit_stock.php?edit=".$row['book_isbn13']."'><font color='blue'>EDIT</font></a> <br /><br /> <a href ='delete_stock.php?delete=".$row['book_isbn13']."'><font color='red'>DELETE</font></a></td>";
 				echo"<td align = 'center'>";
 				
 				if ($row['book_quantity'] < "10") {
