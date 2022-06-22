@@ -51,6 +51,7 @@
 	 'book_cover'=>$book_cover)
 	);
 	 
+	 //verify empty shopping cart 
 	if(empty($_SESSION["shopping_cart"])) {
 		$_SESSION["shopping_cart"] = $cartArray;
 		$status = "<div class='box'>book is added to your cart!</div>";
