@@ -1,9 +1,69 @@
+<style>
+	.pic{text-align:left; width:33%; float:left;}
+	
+	.sidenav {
+		  width: 130px;
+		  position: fixed;
+		  z-index: 1;
+		  top: 100px;
+		  left: 10px;
+		  bottom: 100px;
+		  overflow-x: hidden;
+		  padding: 8px 0;
+		}
 
+		.sidenav a {
+		  padding: 6px 8px 6px 16px;
+		  text-decoration: none;
+		  color: #2196F3;
+		  display: block;
+		}
+
+		.sidenav a:hover {
+		  color: #064579;
+		}
+
+		.main {
+		  margin-left: 140px; /* Same width as the sidebar + left position in px */
+		  padding: 0px 10px;
+		}
+
+		@media screen and (max-height: 450px) {
+		  .sidenav {padding-top: 15px;}
+		  .sidenav a {font-size: 18px;}
+		}
+</style>
+        
+
+<?php
+
+	session_start();
+	include("bookshop_database.php");
+	$username = $_SESSION['username'];
+	
+	if($username == ''){
+		header('location:login.php');
+	}
+	
+	include('header.php');
+	
+	echo "<div class='sidenav'>";
+		echo "<a href='view_books.php'><font color='black'><b>VIEW BOOKS</b></font></a>";
+		echo "<a href='it_books.php'><font color='black'>Information Technology</font></a>";
+		echo "<a href='cs_books.php'><font color='black'>Computer Science</font></a>";
+	    echo "<a href='maths_books.php'><font color='black'>Mathematics</font></a>";
+		echo "<a href='science_books.php'><font color='black'>Science</font></a>";
+		echo "<a href='feedback.php'><font color='green'><b>FEEDBACK</b></font></a>";
+	echo"</div>";
+	echo"<div class='main'>";
+		?>
+		<h1 align="center">Feedback Form</h1>
+        <div class="form-style-5">
+            <form method="post" action="feedback.php">
                 
         <br/><br/>
-       
         <div>
-            <label for="name">Name: </label>
+            <label for="fname">Name: </label>
             <input type="text" id="name" name="name" placeholder="Enter your Name">
         </div>
                 
@@ -18,7 +78,16 @@
         <div>
             
             <div class="pic">
-                <input type="radio" name="service" value="Good"> Good
+                <img src="images/bad.jpg" alt="" width="120px" height="110px" value="bad"> <br/>
+                <input type="radio" name="service" value="Bad" id ="1"> Bad
+            </div>
+            <div class="pic">
+                <img src="images/neutral.jpg" alt="" width="110px" height="110px" value="neutral"> <br/>
+                <input type="radio" name="service" value="Okay" id ="2"> Okay
+            </div>
+            <div class="pic">
+                <img src="images/good.jpg" alt="" width="110px" height="100px" value="good"> <br/>
+                <input type="radio" name="service" value="Good" id="3"> Good
             </div>
         </div>
 
@@ -31,14 +100,30 @@
          <input type="hidden" name="submitted" value="true"/>
          
        </form>
-     </div>
-
+     </div></div>
+       
+	   
+	   <!-- Footer -->
+		<?php	
+			include("footer.php");
+		?>
+		<!-- End Footer -->
+        
+    <?php
+    include("bookshop_database.php");
         if (isset($_POST['submitted'])) {
 
+                $username = $_SESSION['username'];
                 $name = $_POST['name'];
                 $email = $_POST['email'];
                 $service = $_POST['service'];
                 $suggestion = $_POST['suggestion'];
+
+                $username = mysqli_real_escape_string($combine, $username);
+                $name = mysqli_real_escape_string($combine, $name);
+                $email = mysqli_real_escape_string($combine, $email);
+                $service = mysqli_real_escape_string($combine, $service);
+                $suggestion = mysqli_real_escape_string($combine, $suggestion);
 
                 if(empty($name)) {
                     echo "<script>alert('Name is required!')</script>";
@@ -61,11 +146,19 @@
                 }
                 
                 else{
-
+                    //success combine data and display message
+                    $query = mysqli_query($combine, "INSERT INTO feedback
+                        (username, name, email, service, suggestion ) VALUES
+                        ('$username', '$name', '$email ', '$service', '$suggestion')");
+                        if ($query)
+                        {
+                            echo "<script>alert('Thanks for your feedback!');
+                                window.location='view_books.php'</script>";
                         }
                 }
 
         }
+		
      ?>
         
         
