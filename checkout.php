@@ -86,13 +86,25 @@
             . "FROM book ");
     $count = mysqli_num_rows($query);
 	
-
-    $total_price = $_POST['total_price'];
-	$total_full_price = $total_price + 3;
-	
-	echo"<center><h4>Total Price: RM$total_price</h4>";
-	echo"<h4>Packaging Cost: RM3.00 </h4>";
-	echo"<h4>Total Full Price: RM$total_full_price.00</h4>";
+	if($count > 0)
+	{
+		while($row = mysqli_fetch_array($query))
+		{
+			if($quantity > $row['book_quantity'])
+			{
+				echo"<script>alert('No enough stock')</script>";
+			}
+			else
+			{
+				$total_price = $_POST['total_price'];
+				$total_full_price = $total_price + 3;
+								
+				echo"<center><h4>Total Price: RM$total_price</h4>";
+				echo"<h4>Packaging Cost: RM3.00 </h4>";
+				echo"<h4>Total Full Price: RM$total_full_price.00</h4>";
+			}
+		}
+	}
 	
 	echo"<a href='payment.php'<button class='button'>Pay Now</button></a></center></div>";
 	echo"<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />";
