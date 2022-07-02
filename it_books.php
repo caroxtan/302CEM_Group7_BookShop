@@ -45,13 +45,7 @@
 	
 	include('header.php');
 	
-	echo "<div class='sidenav'>";
-		echo "<a href='view_books.php'><font color='black'><b>VIEW BOOKS</b></font></a>";
-		echo "<a href='it_books.php'><font color='black'>Information Technology</font></a>";
-		echo "<a href='cs_books.php'><font color='black'>Computer Science</font></a>";
-	    echo "<a href='maths_books.php'><font color='black'>Mathematics</font></a>";
-		echo "<a href='science_books.php'><font color='black'>Science</font></a>";
-	echo"</div>";
+
 	echo"<div class='main'>";
 	
 	
@@ -95,11 +89,7 @@
         
 	}
 
-        echo "</table>";
-		
-		echo"<br /><center><a href='feedback.php'><button class='button'>Feedback</button></a></center></div>";
-		
-		/*echo"<br/ ><br /><a href='feedback.php'><button>Feedback</button></a>";*/
+        echo "</table></div>";
 
 		include('footer.php');
 ?>
