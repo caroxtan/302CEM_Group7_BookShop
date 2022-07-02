@@ -7,10 +7,10 @@
 		header('location:login.php');
 	}
 	$status="";
-	if (isset($_POST['action']) && $_POST['action']=="remove"){
+	if (isset($_GET['action']) && $_GET['action']=="remove"){
 	if(!empty($_SESSION["shopping_cart"])) {
 		foreach($_SESSION["shopping_cart"] as $key => $value) {
-		  if($_POST["book_id"] == $key){
+		  if($_GET["book_id"] == $key){
 		  unset($_SESSION["shopping_cart"][$key]);
 		  $status = "<div class='box' style='color:red;'>
 		  Book is removed from your cart!</div>";
@@ -21,10 +21,10 @@
 	}
 	}
 	 
-	if (isset($_POST['action']) && $_POST['action']=="change"){
+	if (isset($_GET['action']) && $_GET['action']=="change"){
 	  foreach($_SESSION["shopping_cart"] as &$value){
-		if($value['book_id'] === $_POST["book_id"]){
-			$value['quantity'] = $_POST["quantity"];
+		if($value['book_id'] === $_GET["book_id"]){
+			$value['quantity'] = $_GET["quantity"];
 			break; // Stop the loop after we've found the book
 		}
 	 }   
@@ -159,7 +159,7 @@
 			?>
 			<tr>
 				<td>
-					<img src='images/<?php echo $book["book_cover"]; ?>' width="50" height="40" />
+					<img src='images/<?php echo $book["book_cover"]; ?>' width="100" height="150" />
 				</td>
 				<td>
 					<?php echo $book["book_name"]; ?><br />
@@ -174,16 +174,14 @@
 						<input type='hidden' name='book_id' value="<?php echo $book["book_id"]; ?>" />
 						<input type='hidden' name='action' value="change" />
 					<select name='quantity' class='quantity' onChange="this.form.submit()">
-						<option <?php if($book["quantity"]==1) echo "selected";?>
-						value="1">1</option>
-						<option <?php if($book["quantity"]==2) echo "selected";?>
-						value="2">2</option>
-						<option <?php if($book["quantity"]==3) echo "selected";?>
-						value="3">3</option>
-						<option <?php if($book["quantity"]==4) echo "selected";?>
-						value="4">4</option>
-						<option <?php if($book["quantity"]==5) echo "selected";?>
-						value="5">5</option>
+					<?php
+						for ($book["quantity"] = 1; $book["quantity"] <= $book["book_quantity"]; $book["quantity"]++) {?>
+						 <option value="<?php $book["quantity"]?> "> <?php $book["quantity"]?>
+								</option>
+						<?php
+						}
+					?>
+						
 					</select>
 					</form>
 				</td>

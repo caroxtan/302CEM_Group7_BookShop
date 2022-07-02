@@ -40,6 +40,7 @@
 	$book_description = $row['book_description'];
 	$book_category = $row['book_category'];
 	$book_date = $row['book_date'];
+	$book_quantity = $row['book_quantity'];
 	
 	 //array
 	$cartArray = array(
@@ -47,6 +48,7 @@
 	 'book_name'=>$book_name,
 	 'book_id'=>$book_id,
 	 'price'=>$book_retail_price,
+	 'book_quantity'=>$book_quantity,
 	 'quantity'=>1,
 	 'book_cover'=>$book_cover)
 	);
@@ -209,6 +211,7 @@
 				<div class='book' name='book_description'>".$row['book_description']."</div>
 				<div class='book' name='book_category'>Category: ".$row['book_category']."</div>
 				<div class='book' name='book_date'>Publishing Date: ".$row['book_date']."</div>
+				<div class='book' name='book_quantity'>Quantity: ".$row['book_quantity']."</div>
 				<div class='book'>RM".$row['book_retail_price']."</div>
 				<input type='hidden' name='username' Value= ".$_SESSION['username']." />
 				<input type='hidden' name='quantity' Value=1/>
@@ -217,37 +220,7 @@
 				</form>
 				</div>";
 				}
-			/**
-			echo"<table align='center' width='75%'>";
-			$i=0;
-			//Retrieve and print every record
-			while($row = mysqli_fetch_array($result))
-			{
-					
-					if($i%2==0){
-						echo "<tr>";
-					}
-					echo"<form method='post' action=''>";
-					echo" <input type='hidden' name='book_id' Value= ".$row['book_id']. "'/>";
-					echo"<td><img width='150' height='200' src='images/".$row['book_cover']."'></td>";
-					
-					echo"<td width='40%'><b>".$row['book_name']."</b> <br /> ".$row['book_description']." <br /><br /> Category: ".$row['book_category']." <br /> Publishing Date: ".$row['book_date']." 
-					<br /> Price: RM".$row['book_retail_price']."<br />";
-					echo "<button type='submit' name='add_to_cart' class='add_to_cart'>Add To Cart</button>";
-					echo "</td>";
-					
-					if($i%2==1){
-						echo "</tr>";
-					}
-					
-					
-					$i++;
-				
-			}  
-			echo" <input type='hidden' name='username' Value= ".$_SESSION['username']." />";
-			echo" <input type='hidden' name='quantity' Value=1/>";
-			echo "</table></form></div>";**/
-
+			
 			?>
 	</div>
 		
