@@ -113,9 +113,10 @@
 				echo"<td align = 'center'><font color = 'black'>{$row['book_category']}</font></td>";
                 echo"<td align = 'center'><font color = 'black'>{$row['book_isbn13']}</font></td>";
                 echo"<td align = 'center'><font color = 'black'>{$row['book_quantity']}</font></td>";
-				echo"<td align = 'center'><a href ='addon_stock.php?addon=".$row['book_isbn13']."'><font color='green'>ADD</font></a> <br /><br /> <a href ='edit_stock.php?edit=".$row['book_isbn13']."'><font color='blue'>EDIT</font></a> <br /><br /> <a href ='delete_stock.php?delete=".$row['book_isbn13']."'><font color='red'>DELETE</font></a></td>";
+				echo"<td align = 'center'><a href ='addon_stock.php?addon=".$row['book_isbn13']."'><font color='green'>ADD</font></a> <br /><br /> <a href ='edit_stock.php?edit=".$row['book_isbn13']."'><font color='blue'>EDIT</font></a> <br /><br /> <a onClick=\"javascript: return confirm('Are you sure you want to delete?');\" href ='delete_stock.php?delete=".$row['book_isbn13']."'><font color='red'>DELETE</font></a></td>";
 				echo"<td align = 'center'>";
 				
+
 				if ($row['book_quantity'] < "10") {
 					echo "<font color='red'>LOW!</font></td>";
 				}
