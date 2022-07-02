@@ -98,7 +98,7 @@
 	echo"<input type='text' id='retail_price' value='".$row['book_retail_price']."' readonly>";
 	
 	echo"<br /><br /><label>Quantity:</label>";
-	echo"<br /><input type='range' min='1' max='20' value='".$row['book_quantity']."' name='book_quantity' id='book_quantity' onchange='showRangeValueQuantity(this.value)' >";
+	echo"<br /><input type='range' min='1' max='999' value='".$row['book_quantity']."' name='book_quantity' id='book_quantity' onchange='showRangeValueQuantity(this.value)' >";
 	echo"<input type='text' id='quantity' value='".$row['book_quantity']."' readonly>";
 	
 	echo"<br /><br /><label>Add-on Quantity:</label>";
