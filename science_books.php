@@ -44,7 +44,7 @@
 	}
 	
 	include('header.php');
-	
+	include('sidebar.php');
 
 	echo"<div class='main'>";
 	

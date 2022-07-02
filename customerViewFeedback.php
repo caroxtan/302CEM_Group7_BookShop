@@ -13,7 +13,7 @@
 	}
 	
 	include('header.php');
-
+	include('sidebar.php');
 	echo"<div class='main'>";
 	echo"<h1 align='center'>View Replied Feedback</h1>";
         

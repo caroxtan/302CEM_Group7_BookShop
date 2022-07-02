@@ -46,7 +46,7 @@
 	}
 	
 	include('header.php');
-
+	include('sidebar.php');
 	echo"<div class='main'>";
 		?>
 		<h1 align="center">Feedback Form</h1>
