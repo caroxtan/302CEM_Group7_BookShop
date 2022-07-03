@@ -7,10 +7,11 @@
 		header('location:login.php');
 	}
 	$status="";
-	if (isset($_GET['action']) && $_GET['action']=="remove"){
+	
+	if (isset($_POST['action']) && $_POST['action']=="remove"){
 	if(!empty($_SESSION["shopping_cart"])) {
 		foreach($_SESSION["shopping_cart"] as $key => $value) {
-		  if($_GET["book_id"] == $key){
+		  if($_POST["book_id"] == $key){
 		  unset($_SESSION["shopping_cart"][$key]);
 		  $status = "<div class='box' style='color:red;'>
 		  Book is removed from your cart!</div>";
@@ -21,10 +22,10 @@
 	}
 	}
 	 
-	if (isset($_GET['action']) && $_GET['action']=="change"){
+	if (isset($_POST['action']) && $_POST['action']=="change"){
 	  foreach($_SESSION["shopping_cart"] as &$value){
-		if($value['book_id'] === $_GET["book_id"]){
-			$value['quantity'] = $_GET["quantity"];
+		if($value['book_id'] === $_POST["book_id"]){
+			$value['quantity'] = $_POST["quantity"];
 			break; // Stop the loop after we've found the book
 		}
 	 }   
@@ -44,6 +45,7 @@
 	
 	
 	<style>
+		
 		.payment_btn{
 			background-color:transparent;
 			color: #FFD700;
@@ -172,17 +174,10 @@
 				<td>
 					<form method='post' action=''>
 						<input type='hidden' name='book_id' value="<?php echo $book["book_id"]; ?>" />
-						<input type='hidden' name='action' value="change" />
-					<select name='quantity' class='quantity' onChange="this.form.submit()">
-					<?php
-						for ($book["quantity"] = 1; $book["quantity"] <= $book["book_quantity"]; $book["quantity"]++) {?>
-						 <option value="<?php $book["quantity"]?> "> <?php $book["quantity"]?>
-								</option>
-						<?php
-						}
-					?>
+						<input type='hidden' name='action' value="change" >
+						<input type="number" name="quantity-<?=$book['book_id']?>" value="<?=$book['quantity']?>" min="1" max="<?=$book['book_quantity']?>" placeholder="Quantity" required />
 						
-					</select>
+						</input>
 					</form>
 				</td>
 				<td>
