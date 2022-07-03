@@ -29,8 +29,8 @@
 	$row= mysqli_fetch_array($result, MYSQLI_ASSOC);
 	
 				$sqlAdd="INSERT INTO wishlist
-						(username, book_name, book_author, book_date, book_isbn13, book_description, book_category, book_trade_price, book_retail_price, book_quantity, book_cover) VALUES
-						('$username', '".$row['book_name']."', '".$row['book_author']."', '".$row['book_date']."', '".$row['book_isbn13']."', '".$row['book_description']."', '".$row['book_category']."', '".$row['book_trade_price']."', '".$row['book_retail_price']."', '".$row['book_quantity']."', '".$row['book_cover']."')";
+						(username, book_name, book_author, book_date, book_isbn13, book_description, book_category, book_retail_price, book_quantity, book_cover) VALUES
+						('$username', '".$row['book_name']."', '".$row['book_author']."', '".$row['book_date']."', '".$row['book_isbn13']."', '".$row['book_description']."', '".$row['book_category']."', '".$row['book_retail_price']."', '".$row['book_quantity']."', '".$row['book_cover']."')";
 				if($combine->query($sqlAdd)===TRUE){
 			
 					echo"<script>alert('Book successfully added to wishlist!');

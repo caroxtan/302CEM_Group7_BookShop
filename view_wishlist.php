@@ -61,13 +61,14 @@
                             echo "<table align = 'center' width = '90%' border ='1'>";
                             echo "<tr align = 'center'>";
                             
-                                echo"<th align='center'><font color = 'white'>Wishlist ID</font></th>";
 								echo"<th align='center'><font color = 'white'>Book Cover</font></th>";
                                 echo"<th align='center'><font color = 'white'>Book Name</font></th>";
+								echo"<th align='center'><font color = 'white'>Book Author</font></th>";
                                 echo"<th align='center'><font color = 'white'>Book Description</font></th>";
                                 echo"<th align='center'><font color = 'white'>Category</font></th>";
                                 echo"<th align='center'><font color = 'white'>Publishing Date</font></th>";
 								echo"<th align='center'><font color = 'white'>Action</font></th>";
+								echo"<th align='center'><font color = 'white'>Status</font></th>";
 
                             echo"</tr>";
                             //Retrieve and print every record
@@ -76,18 +77,30 @@
 
                                     echo"<tr>";
 
-
-                                    echo"<td align = 'center'><font color = 'black'>{$row['wishlist_id']}</font></td>";
 									echo"<td><img width='100' height='100' src='images/".$row['book_cover']."'></td>";
                                     echo"<td align = 'center'><font color = 'black'>{$row['book_name']}</font></td>";
+									echo"<td align = 'center'><font color = 'black'>{$row['book_author']}</font></td>";
                                     echo"<td align = 'center'><font color = 'black'>{$row['book_description']}</font></td>";
                                     echo"<td align = 'center'><font color = 'black'>{$row['book_category']}</font></td>";
                                     echo"<td align = 'center'><font color = 'black'>{$row['book_date']}</font></td>";
 									echo"<td align = 'center'><a onClick=\"javascript: return confirm('Are you sure you want to remove this book from wishlist?');\" href ='delete_wishlist.php?delete_wishlist=".$row['wishlist_id']."'><font color='red'>REMOVE</font></a></td>";
+									echo"<td align = 'center'>";
+								
+									if ($row['book_quantity'] == 0) {
+										echo "<font color='red'>OUT OF STOCK!</font>";
+									}
+									else {
+										echo "<font color='green'>IN STOCK!</font>";
+									}
+									echo"</td>";
                                     echo"</tr>";
  
                             }
                        }
+					   else{
+						   echo"<center><b>Your wishlist is empty!</b></center>";
+					   }
+					   
                    
             echo"</table></div></div>";
 			
