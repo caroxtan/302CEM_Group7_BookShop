@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <?php
-
 	session_start();
 	//took record base on the username
 	$username = $_SESSION['username'];
@@ -24,7 +23,6 @@
 		<title>Profile</title>
 		
 		<style>
-
 			.outer_container
 			{
 				width : 100%;
@@ -54,9 +52,9 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 	</head>
 	<body>
+
 		
 		<br/><br/>
-		
 		
 
 		<h1>PROFILE</h1>

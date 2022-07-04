@@ -56,6 +56,7 @@
 			{
 				$_SESSION['admin_id'] = $admin_id;
 				echo "<script>alert('You are now logged in.');
+
 					return true;
 			
 			}else {
@@ -108,6 +109,10 @@
 			</form>  <!-- end form -->
 			
 		</div>  <!-- div -->
+		
+		<?php
+			require('footer.php');
+		?>
 		
 		 <!-- javascript -->
 		<script> 

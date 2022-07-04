@@ -54,8 +54,9 @@
             <form method="post" action="feedback.php">
                 
         <br/><br/>
+       
         <div>
-            <label for="fname">Name: </label>
+
             <input type="text" id="name" name="name" placeholder="Enter your Name">
         </div>
                 
@@ -70,16 +71,7 @@
         <div>
             
             <div class="pic">
-                <img src="images/bad.jpg" alt="" width="120px" height="110px" value="bad"> <br/>
-                <input type="radio" name="service" value="Bad" id ="1"> Bad
-            </div>
-            <div class="pic">
-                <img src="images/neutral.jpg" alt="" width="110px" height="110px" value="neutral"> <br/>
-                <input type="radio" name="service" value="Okay" id ="2"> Okay
-            </div>
-            <div class="pic">
-                <img src="images/good.jpg" alt="" width="110px" height="100px" value="good"> <br/>
-                <input type="radio" name="service" value="Good" id="3"> Good
+
             </div>
         </div>
 
@@ -105,17 +97,12 @@
     include("bookshop_database.php");
         if (isset($_POST['submitted'])) {
 
-                $username = $_SESSION['username'];
+
                 $name = $_POST['name'];
                 $email = $_POST['email'];
                 $service = $_POST['service'];
                 $suggestion = $_POST['suggestion'];
 
-                $username = mysqli_real_escape_string($combine, $username);
-                $name = mysqli_real_escape_string($combine, $name);
-                $email = mysqli_real_escape_string($combine, $email);
-                $service = mysqli_real_escape_string($combine, $service);
-                $suggestion = mysqli_real_escape_string($combine, $suggestion);
 
                 if(empty($name)) {
                     echo "<script>alert('Name is required!')</script>";
@@ -138,14 +125,7 @@
                 }
                 
                 else{
-                    //success combine data and display message
-                    $query = mysqli_query($combine, "INSERT INTO feedback
-                        (username, name, email, service, suggestion ) VALUES
-                        ('$username', '$name', '$email ', '$service', '$suggestion')");
-                        if ($query)
-                        {
-                            echo "<script>alert('Thanks for your feedback!');
-                                window.location='view_books.php'</script>";
+
                         }
                 }
 
