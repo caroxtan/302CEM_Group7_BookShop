@@ -174,7 +174,6 @@
 		
 		<!-- Form Division -->
 
-		
 			<form method = "POST" action = "register.php">
 			
 				<h3><center>Register</center></h3>
@@ -203,7 +202,9 @@
 				<!-- Date of Birth -->
 				<label>&nbsp;&nbsp;<i class="fa fa-calendar" aria-hidden="true"> &nbsp;Date of Birth :</i></label>
 				<br>
-				<input type = "date" name = "dob"/>
+				<?php
+					echo"<input type = 'date' name = 'dob' max='2009-12-31'/>"
+				?>
 				
 				<br>
 				
@@ -294,4 +295,4 @@
 		<!-- End Footer -->
 		
 	</body>
-	
+
