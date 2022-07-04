@@ -46,7 +46,7 @@
 	
 	include('header_admin.php');
 	
-	$book_isbn13=$_GET['edit'];
+	$book_isbn13=$_GET['addon'];
 	$sql = "SELECT * FROM book WHERE book_isbn13 = '$book_isbn13'";
 	$result = mysqli_query($combine, $sql);
 	$row= mysqli_fetch_array($result, MYSQLI_ASSOC);
@@ -66,7 +66,7 @@
 	$current_date = date("Y-m-d");
 
 	echo"<div class='form-style-5'>";
-	echo"<form action='edit_stock2.php' method = 'get' enctype='multipart/form-data' id='edit_form'>";
+	echo"<form action='addon_stock2.php' method = 'get' enctype='multipart/form-data'>";
 	
 	echo "<input type='hidden' name='submitted' value='true'>";
 	
@@ -98,8 +98,12 @@
 	echo"<input type='text' id='retail_price' value='".$row['book_retail_price']."' readonly>";
 	
 	echo"<br /><br /><label>Quantity:</label>";
-	echo"<br /><input type='range' min='1' max='20' value='".$row['book_quantity']."' name='book_quantity' id='book_quantity' onchange='showRangeValueQuantity(this.value)' >";
+	echo"<br /><input type='range' min='1' max='999' value='".$row['book_quantity']."' name='book_quantity' id='book_quantity' onchange='showRangeValueQuantity(this.value)' >";
 	echo"<input type='text' id='quantity' value='".$row['book_quantity']."' readonly>";
+	
+	echo"<br /><br /><label>Add-on Quantity:</label>";
+	echo"<br /><input type='range' min='1' max='20' value='1' name='book_addon' id='book_addon' onchange='showRangeValueAddOn(this.value)' >";
+	echo"<input type='text' id='add_on' value='1' readonly>";
 	
 	echo "<br /><br /><input type='submit' name='submit' value='Submit' onClick=\"javascript: return confirm('Are you sure you want to update?');\">";
 	echo"</form></div></div>";
@@ -122,6 +126,10 @@
 		
 		function showRangeValueQuantity(val){
 			document.getElementById('quantity').value=val;
+		}
+		
+		function showRangeValueAddOn(val){
+			document.getElementById('add_on').value=val;
 		}
 	</script>
 	
