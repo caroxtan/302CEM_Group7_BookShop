@@ -98,7 +98,6 @@
 				if($i%2==0){
 					echo "<tr>";
 				}
-				
                 echo"<td><img width='150' height='220' src='images/".$row['book_cover']."'></td>";
 				
 				echo"<td width='40%'><b>{$row['book_name']}</b> <br /> {$row['book_description']} <br /><br /> Author: {$row['book_author']} <br /> Category: {$row['book_category']} <br /> Publishing Date: {$row['book_date']} <br /> Price: RM{$row['book_retail_price']} <br /><a href ='wishlist.php?wishlist=".$row['book_isbn13']."'><button class='wishlist'>Add to Wishlist</button></a> <br /><br />";
@@ -107,7 +106,7 @@
 					echo "<font color='red'>OUT OF STOCK!</font>";
 				}
 				else {
-					echo "<a href ='add_to_cart.php?cart=".$row['book_isbn13']."'><button class='cart'>Add to Cart</a></button> &nbsp; <input class='input' type='number' id='quantity' min='0' max='' value ='0' name='quantity'>";
+					echo "<a href ='add_to_cart.php?cart=".$row['book_isbn13']."'><button class='cart'>Add to Cart</a></button>";
 		        }
 				echo "</td>";
 				
