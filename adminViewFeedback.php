@@ -74,7 +74,7 @@
 		echo "<a href='stocks_level.php'><font color='black'><b>STOCKS LEVEL</b></font></a>";
 		echo "<a href='it_book_list.php'><font color='black'>Information Technology</font></a>";
 		echo "<a href='cs_book_list.php'><font color='black'>Computer Science</font></a>";
-	    echo "<a href='maths_book_list.php'><font color='black'>Mathematics</font></a>";
+                echo "<a href='maths_book_list.php'><font color='black'>Mathematics</font></a>";
 		echo "<a href='science_book_list.php'><font color='black'>Science</font></a>";
 		echo "<a href='adminViewFeedback.php'><font color='green'><b>FEEDBACK LIST</b></font></a>";
 	echo"</div>";
@@ -87,16 +87,18 @@
 
                        if($count > 0)
                        {
-						   echo "<div class='customers'>";
-                           echo "<table align = 'center' width = '90%' border ='1'>";
-                           echo "<tr align = 'center'>";
-                                //echo"<th align='center'></th>";
+                            echo "<div class='customers'>";
+                            echo "<table align = 'center' width = '90%' border ='1'>";
+                            echo "<tr align = 'center'>";
+                            
                                 echo"<th align='center'><font color = 'black'>No.</font></th>";
+                                echo"<th align='center'><font color = 'black'>Username</font></th>";
                                 echo"<th align='center'><font color = 'black'>Customer Name</font></th>";
                                 echo"<th align='center'><font color = 'black'>Email</font></th>";
-                                echo"<th align='center'><font color = 'black'>Serivce</font></th>";
+                                echo"<th align='center'><font color = 'black'>Service Rated</font></th>";
                                 echo"<th align='center'><font color = 'black'>Suggestion</font></th>";
                                 echo"<th align='center'><font color = 'black'>Reply to customer</font></th>";
+                                echo"<th align='center'><font color = 'black'>Status</font></th>";
 
                             echo"</tr>";
                             //Retrieve and print every record
@@ -107,11 +109,23 @@
 
 
                                     echo"<td align = 'center'><font color = 'black'>{$row['feedback_ID']}</font></td>";
+                                    echo"<td align = 'center'><font color = 'black'>{$row['username']}</font></td>";
                                     echo"<td align = 'center'><font color = 'black'>{$row['name']}</font></td>";
                                     echo"<td align = 'center'><font color = 'black'>{$row['email']}</font></td>";
                                     echo"<td align = 'center'><font color = 'black'>{$row['service']}</font></td>";
                                     echo"<td align = 'center'><font color = 'black'>{$row['suggestion']}</font></td>";
-                                    echo"<td align = 'center'><a href ='adminReplyCustomer.php?reply=".$row['admin_reply']."'><font color='blue'>REPLY TO CUSTOMER</font></a></td>";
+                                    echo"<td align = 'center'><a href ='adminReplyCustomer.php?reply=".$row['feedback_ID']."'><font color='blue'>REPLY TO CUSTOMER</font></a></td>";
+                                    echo"<td align = 'center'>";
+                                    
+                                    if($row['admin_reply'] == '')
+                                    {
+                                        echo "<font color ='red'>NO ACTION!</font></td>";
+                                    }
+                                    
+                                    else{
+                                        echo "<font color='green'>REPLIED!</font></td>";
+                                    }
+                                  
                                     echo"</tr>";
  
                             }
@@ -119,7 +133,7 @@
                    
             echo"</table></div></div>";
 			
-			echo"<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />";
+            echo"<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />";
 			
-			include('footer.php');
+            include('footer.php');
 ?>

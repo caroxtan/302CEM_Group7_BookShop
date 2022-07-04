@@ -46,7 +46,8 @@
 	}
 	
 	include('header.php');
-	include('sidebar.php');
+  include ('sidebar.php');
+  
 	echo"<div class='main'>";
 		?>
 		<h1 align="center">Feedback Form</h1>
@@ -54,7 +55,6 @@
             <form method="post" action="feedback.php">
                 
         <br/><br/>
-       
         <div>
 
             <input type="text" id="name" name="name" placeholder="Enter your Name">
@@ -104,6 +104,7 @@
                 $suggestion = $_POST['suggestion'];
 
 
+
                 if(empty($name)) {
                     echo "<script>alert('Name is required!')</script>";
                 }
@@ -125,7 +126,14 @@
                 }
                 
                 else{
-
+                    //success combine data and display message
+                    $query = mysqli_query($combine, "INSERT INTO feedback
+                        (username, name, email, service, suggestion ) VALUES
+                        ('$username', '$name', '$email ', '$service', '$suggestion')");
+                        if ($query)
+                        {
+                            echo "<script>alert('Thanks for your feedback!');
+                                window.location='view_books.php'</script>";
                         }
                 }
 
