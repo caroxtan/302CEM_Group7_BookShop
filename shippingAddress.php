@@ -2,21 +2,7 @@
 
 <?php
 
-	session_start();
-	include("bookshop_database.php");
-	$username = $_SESSION['username'];
-	
-	if($username == '')
-	{
-		header('location:login.php');
-	}
-	
-	include('header.php');
-	include('sidebar.php');
-	
-	echo"<h1 align='center'>Shipping Address</h1>";
-	
-	if(isset($_POST['submitted']))
+
 	{
 		$fname          = $_POST['fname'];
 		$lname          = $_POST['lname'];
@@ -29,17 +15,7 @@
 		
 		$number = preg_match('@[0-9]@', $zip_code);
 		
-		$valid = true;
-		
-		$fname          = mysqli_real_escape_string($combine, $fname);
-		$lname          = mysqli_real_escape_string($combine, $lname);
-		$contact_number = mysqli_real_escape_string($combine, $contact_number);
-		$address        = mysqli_real_escape_string($combine, $address);
-		$city           = mysqli_real_escape_string($combine, $city);
-		$country        = mysqli_real_escape_string($combine, $country );
-		$state          = mysqli_real_escape_string($combine, $state);
-		$zip_code       = mysqli_real_escape_string($combine, $zip_code);
-		
+
 			//Validation
 			//First name validation
 			if(empty($fname))
@@ -89,19 +65,7 @@
 			{
 				echo"<script>alert('Please enter your ZIP code in numberic!(e.g: 11500)')</script>";
 			}
-			else
-			{
-				//Success store data and display message
-                $query = mysqli_query($combine, "INSERT INTO shipping
-                (fname, lname, contact_number, address, city, country, state, zip_code) VALUES
-                ('$fname', '$lname', '$contact_number', '$address', '$city', '$country', '$state', '$zip_code')");
-                if ($query)
-                {
-                     echo"<script>alert('You have successfully enter shipping details!');
-                     window.location='payment.php'</script>";
 
-                }
-			}
 	}	
 
 ?>
@@ -149,16 +113,6 @@
 	</head>
 	
 	<body>
-		<div class='form-style-5'>
-			
-			<center><form method = "POST" action ="shippingAddress.php">
-
-			<br /><center><p><font size='+1'>Please fill in your details correctly!</font></p>
-
-        
-            <p><font color = 'red'> * Required </font></p></center>
-		    
-			<hr/>
 
 				<input type = "text" id = "fname" name = "fname" size = "50" value= "<?php if(isset($_POST["fname"])) echo $_POST["fname"]; ?>" placeholder = "First Name"/>
 				<input type = "text" id = "lname" name = "lname" size = "49" value= "<?php if(isset($_POST["fname"])) echo $_POST["fname"]; ?>" placeholder = "Last Name"/>
@@ -185,13 +139,10 @@
 				
 				<br/>
 				
-				<input type='submit' name='submit' value='Next'/>
-                <input type='hidden' name='submitted' value='true'/>
+
 				
 			</form></center>
 		
 		</div>
-		
-		
 
 </html>
