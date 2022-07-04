@@ -3,8 +3,26 @@
 	session_start();
 	//connection to database
 	include('bookshop_database.php');
-
+	$username = $_SESSION['username'];
 	$status="";
+	
+	
+	if(isset($_POST['add_to_cart']))
+	{
+		$username =  $_POST['username'];
+		$book_id = $_POST['book_id'];
+		$quantity = $_POST['quantity'];
+
+		$username=mysqli_real_escape_string($combine, $username);
+		$book_id=mysqli_real_escape_string($combine, $book_id);
+		$quantity=mysqli_real_escape_string($combine, $quantity);
+		
+		//success store data and display message
+		$query = mysqli_query($combine, "INSERT INTO user_shopping_cart
+			(username, book_id, quantity) VALUES
+			('$username', '$book_id', '$quantity')");
+		
+	}
 	
 	//print out all book from database
 	if (isset($_POST['book_id']) && $_POST['book_id']!=""){
@@ -22,6 +40,7 @@
 	$book_description = $row['book_description'];
 	$book_category = $row['book_category'];
 	$book_date = $row['book_date'];
+	$book_quantity = $row['book_quantity'];
 	
 	 //array
 	$cartArray = array(
@@ -29,14 +48,37 @@
 	 'book_name'=>$book_name,
 	 'book_id'=>$book_id,
 	 'price'=>$book_retail_price,
+	 'book_quantity'=>$book_quantity,
 	 'quantity'=>1,
 	 'book_cover'=>$book_cover)
 	);
 	 
+	 //verify empty shopping cart 
 	if(empty($_SESSION["shopping_cart"])) {
 		$_SESSION["shopping_cart"] = $cartArray;
 		$status = "<div class='box'>book is added to your cart!</div>";
 	}else{
+		/**
+		if(!empty($_POST["book_quantity"])) {
+			
+			if(!empty($_SESSION["shopping_cart"])) {
+				if(in_array($book_id,array_keys($_SESSION["shopping_cart"]))) {
+					foreach($_SESSION["shopping_cart"] as $array_keys => $v) {
+							if($book_id == $array_keys) {
+								if(empty($_SESSION["shopping_cart"][$array_keys]["quantity"])) {
+									$_SESSION["shopping_cart"][$array_keys]["quantity"] = 0;
+								}
+								$_SESSION["shopping_cart"][$array_keys]["quantity"] += $_POST["quantity"];
+							}
+					}
+				} else {
+					$_SESSION["shopping_cart"] = array_merge($_SESSION["shopping_cart"],$cartArray);
+				}
+			} else {
+				$_SESSION["shopping_cart"] = $cartArray;
+			}
+		}**/
+	
 		$array_keys = array_keys($_SESSION["shopping_cart"]);
 		if(in_array($book_id,$array_keys)) {
 	 $status = "<div class='box' style='color:red;'>
@@ -112,7 +154,20 @@
 			 background: #feb303;
 			 border-color: #feb303;
 		}
-	
+		.book_wrapper {	
+		 float:left;
+		 padding: 20px;
+		 text-align: center;
+		 height: 400px;
+		 width:300px;
+		 margin-left: 280px;
+		 margin-bottom:40px;
+		 border-radius : 15px;
+		 background-color :rgba(0 , 0 , 0 , 0.5);/*transparent*/
+		 }
+		.book{
+			text-align:left;
+		}
 </style>
 
 	<head>
@@ -168,34 +223,25 @@
 			
 			$result = mysqli_query($combine,"SELECT * FROM `book`");
 			
-			echo"<table align='center' width='75%'>";
-			$i=0;
-			//Retrieve and print every record
-			while($row = mysqli_fetch_array($result))
-			{
-					
-					if($i%2==0){
-						echo "<tr>";
-					}
-					echo"<form method='post' action=''>";
-					echo"<td><img width='150' height='200' src='images/".$row['book_cover']."'></td>";
-					
-					echo"<td width='40%'><b>{$row['book_name']}</b> <br /> {$row['book_description']} <br /><br /> Category: {$row['book_category']} <br /> Publishing Date: {$row['book_date']} 
-					<br /> Price: RM{$row['book_retail_price']}<br />";
-					echo "<button type='submit' name='add_to_cart' class='add_to_cart'>Add To Cart</button>";
-					echo "</td>";
-					
-					if($i%2==1){
-						echo "</tr>";
-					}
-					
-					
-					$i++;
+			while($row = mysqli_fetch_assoc($result)){
+			echo "<div class='book_wrapper'>
+				<form method='post' action=''>
+				<input type='hidden' name='book_id' value=".$row['book_id']." />
+				<div class='image'><img width='150' height='200' src='images/".$row['book_cover']."' alt=".$row['book_name']." /></div>
+				<div class='book' name='book_name'>".$row['book_name']."</div>
+				<div class='book' name='book_description'>".$row['book_description']."</div>
+				<div class='book' name='book_category'>Category: ".$row['book_category']."</div>
+				<div class='book' name='book_date'>Publishing Date: ".$row['book_date']."</div>
+				<div class='book' name='book_quantity'>Quantity: ".$row['book_quantity']."</div>
+				<div class='book'>RM".$row['book_retail_price']."</div>
+				<input type='hidden' name='username' Value= ".$_SESSION['username']." />
+				<input type='hidden' name='quantity' Value=1/>
+				<button type='submit' name='add_to_cart' class='add_to_cart'>Add To Cart</button>
 				
-			}  
+				</form>
+				</div>";
+				}
 			
-			echo "</table></form></div>";
-
 			?>
 	</div>
 		

@@ -2,9 +2,7 @@
 
 <?php
 
-	include("bookshop_database.php");
-	
-	if(isset($_POST['submit']))
+
 	{
 		$fname          = $_POST['fname'];
 		$lname          = $_POST['lname'];
@@ -17,6 +15,7 @@
 		
 		$number = preg_match('@[0-9]@', $zip_code);
 		
+
 			//Validation
 			//First name validation
 			if(empty($fname))
@@ -66,6 +65,7 @@
 			{
 				echo"<script>alert('Please enter your ZIP code in numberic!(e.g: 11500)')</script>";
 			}
+
 	}	
 
 ?>
@@ -113,12 +113,7 @@
 	</head>
 	
 	<body>
-		<div class = "container">
-			
-			<center><form method = "POST" action ="">
-			
-				<h3>Shipping Address</h3>
-				
+
 				<input type = "text" id = "fname" name = "fname" size = "50" value= "<?php if(isset($_POST["fname"])) echo $_POST["fname"]; ?>" placeholder = "First Name"/>
 				<input type = "text" id = "lname" name = "lname" size = "49" value= "<?php if(isset($_POST["fname"])) echo $_POST["fname"]; ?>" placeholder = "Last Name"/>
 				
@@ -144,7 +139,7 @@
 				
 				<br/>
 				
-				<button class ="button_1" name = "submit">Next</button>
+
 				
 			</form></center>
 		
