@@ -3,7 +3,7 @@ session_start();
 
 unset($_SESSION["username"]);
 session_destroy();
-$url = "admin/login.php";
+$url = "adminlogin.php";
 
 header("Location:$url");
 

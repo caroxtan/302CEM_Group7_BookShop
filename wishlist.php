@@ -19,8 +19,19 @@
 	$rowWish=mysqli_fetch_array($resultWish, MYSQLI_ASSOC);
 	if(mysqli_num_rows($resultWish)== 1)
 	{
-		echo"<script>alert('Book already added to wishlist!');
-		window.location='view_books.php'</script>";
+		$sqlEditing="UPDATE `cart` SET `quantity`='quantity' WHERE `cart`.`book_isbn13`='$book_isbn13'";
+				
+				//successful edited
+				if($combine->query($sqlEditing)===TRUE){
+					
+					echo"<script>alert('Book is already in wishlist!');
+					window.location='view_books.php'</script>";
+				}else{
+					//fail edit
+					echo "<script>alert('Book quantity has not been successfully updated in wishlist!');
+					window.location='view_books.php'</script>";
+					
+				}
 	}
 	else {
 	

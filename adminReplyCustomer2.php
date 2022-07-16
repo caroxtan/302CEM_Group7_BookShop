@@ -1,7 +1,7 @@
 
 <?php
 
-        session_start();
+    session_start();
 	
 	include('bookshop_database.php');
 	

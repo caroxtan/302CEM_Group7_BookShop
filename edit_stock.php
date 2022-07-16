@@ -66,7 +66,7 @@
 	$current_date = date("Y-m-d");
 
 	echo"<div class='form-style-5'>";
-	echo"<form action='edit_stock2.php' method = 'get' enctype='multipart/form-data' id='edit_form'>";
+	echo"<form action='edit_stock2.php' method = 'get' enctype='multipart/form-data'>";
 	
 	echo "<input type='hidden' name='submitted' value='true'>";
 	

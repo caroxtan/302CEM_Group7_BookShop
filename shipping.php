@@ -1,4 +1,61 @@
-<!DOCTYPE html>
+<style>
+		
+		.customers {
+		  font-family: Arial, Helvetica, sans-serif;
+		  border-collapse: collapse;
+		  width: 100%;
+		}
+
+		.customers td, #customers th {
+		  border: 1px solid #ddd;
+		  padding: 8px;
+		}
+
+		.customers tr:nth-child(even){background-color: #f2f2f2;}
+
+		.customers tr:hover {background-color: #ddd;}
+
+		.customers th {
+		  padding-top: 12px;
+		  padding-bottom: 12px;
+		  text-align: center;
+		  background-color: #157DEC;
+		  color: white;
+		}
+		.sidenav {
+		  width: 130px;
+		  position: fixed;
+		  z-index: 1;
+		  top: 100px;
+		  left: 10px;
+		  bottom: 100px;
+		  overflow-x: hidden;
+		  padding: 8px 0;
+		}
+
+		.sidenav a {
+		  padding: 6px 8px 6px 16px;
+		  text-decoration: none;
+		  color: #2196F3;
+		  display: block;
+		}
+
+		.sidenav a:hover {
+		  color: #064579;
+		}
+
+		.main {
+		  margin-left: 140px; /* Same width as the sidebar + left position in px */
+		  padding: 0px 10px;
+		}
+
+		@media screen and (max-height: 450px) {
+		  .sidenav {padding-top: 15px;}
+		  .sidenav a {font-size: 18px;}
+		}
+		
+		
+</style>
 
 <?php
 
@@ -11,10 +68,11 @@
 		header('location:login.php');
 	}
 	
-	include('header.php');
-	include('sidebar.php');
+	echo"<div class='main'>";
+	echo "<form method='post' action='view_books.php'>";
+	echo"<h1 align='center'>Shipping Address</h1>";
 	
-	if(isset($_POST['submitted']))
+	if(isset($_POST['submit']))
 	{
 		$fname          = $_POST['fname'];
 		$lname          = $_POST['lname'];
@@ -26,8 +84,6 @@
 		$zip_code       = $_POST['zip_code'];
 		
 		$number = preg_match('@[0-9]@', $zip_code);
-		
-		$valid = true;
 		
 		$fname          = mysqli_real_escape_string($combine, $fname);
 		$lname          = mysqli_real_escape_string($combine, $lname);
@@ -96,77 +152,45 @@
                 if ($query)
                 {
                      echo"<script>alert('You have successfully enter shipping details!');
-                     window.location='payment.php'</script>";
+                     window.location='index.php'</script>";
 
                 }
 			}
 	}	
 
 ?>
-
-<html lang="en">
-
-	<head>
-	
-		<meta charset="utf-8">
-		<title>Shipping Address</title>
-	
-	</head>
-	
-	<body>
-	
-		<h1 align = "center">Shipping Address</h1>
-	
-		<div class='form-style-5'>
-			
-			<form method = "POST" action ="shippingAddress.php">
-			
-			<fieldset>
 				
-				<label for='fname'>First Name</label>
-				<input type = "text" id = "fname" name = "fname" size = "50" value= "<?php if(isset($_POST["fname"])) echo $_POST["fname"]; ?>" placeholder = "John"/>
-				<label for='lname'>Last Name</label>
-				<input type = "text" id = "lname" name = "lname" size = "49" value= "<?php if(isset($_POST["fname"])) echo $_POST["fname"]; ?>" placeholder = "Tan"/>
+				<input type = "text" id = "fname" name = "fname" size = "50" value= "<?php if(isset($_POST["fname"])) echo $_POST["fname"]; ?>" placeholder = "First Name"/>
+				<input type = "text" id = "lname" name = "lname" size = "49" value= "<?php if(isset($_POST["fname"])) echo $_POST["fname"]; ?>" placeholder = "Last Name"/>
 				
 				<br/>
 				
-				<label for='contact_number'>Contact Number</label>
-				<input type = "text" id = "contact_number" name = "contact_number" size = "108" value= "<?php if(isset($_POST["contact"])) echo $_POST["contact"]; ?>" placeholder = "016 - 4786343">
+				<input type = "text" id = "contact_number" name = "contact_number" size = "108" value= "<?php if(isset($_POST["contact"])) echo $_POST["contact"]; ?>" placeholder = "Contact Number">
 				
 				<br/>
 				
-				<label for='address'>Address</label>
-				<input type = "text" id = "address" name = "address" size = "108" value= "<?php if(isset($_POST["address"])) echo $_POST["address"]; ?>" placeholder = "12 Jalan Hijau">
+				<input type = "text" id = "address" name = "address" size = "108" value= "<?php if(isset($_POST["address"])) echo $_POST["address"]; ?>" placeholder = "Address">
 				
 				<br/>
 				
-				<label for='city'>City</label>
-				<input type = "text" id = "city" name = "city" size = "108" value= "<?php if(isset($_POST["city"])) echo $_POST["city"]; ?>" placeholder = "Georgetown">
+				<input type = "text" id = "city" name = "city" size = "108" value= "<?php if(isset($_POST["city"])) echo $_POST["city"]; ?>" placeholder = "City">
 				
 				<br/>
 				
-				<label for='country'>Country</label>
-				<input type = "text" id = "country" name = "country" size = "30" value= "<?php if(isset($_POST["country"])) echo $_POST["country"]; ?>" placeholder = "Malaysia">
+				<input type = "text" id = "country" name = "country" size = "30" value= "<?php if(isset($_POST["country"])) echo $_POST["country"]; ?>" placeholder = "Country">
 				
-				<label for='state'>State</label>
-				<input type = "text" id = "state" name = "state" size = "30" value= "<?php if(isset($_POST["state"])) echo $_POST["state"]; ?>" placeholder = "Penang">
+				<input type = "text" id = "state" name = "state" size = "30" value= "<?php if(isset($_POST["state"])) echo $_POST["state"]; ?>" placeholder = "State">
 				
-				<label for='state'>ZIP Code</label>
-				<input type = "text" id = "zip_code" name = "zip_code" size = "30" value= "<?php if(isset($_POST["zipCode"])) echo $_POST["zipCode"]; ?>" placeholder = "11700">
+				<input type = "text" id = "zip_code" name = "zip_code" size = "30" value= "<?php if(isset($_POST["zipCode"])) echo $_POST["zipCode"]; ?>" placeholder = "ZIP code">
 				
 				<br/>
 				
-				<input type='submit' name='submit' value='Next'/>
-                <input type='hidden' name='submitted' value='true'/>
+				<button class ="button_1" name = "submit">Next</button>
 				
-			</fieldset>
-				
-			</form>
+			</form></center>
 		
 		</div>
 		
-	<?php	
-			include("footer.php");
-	?>
+		
 
 </html>

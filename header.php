@@ -81,8 +81,8 @@
 				 <?php
                         
                         if(isset($_SESSION['username'])){
-							echo"<a href='wishlist.php'><img src='Images/wishlist.jpg' alt='Wishlist' width'25' height='25'/></a>";
-							echo"&ensp; <a href='shopping_cart.php'><img src='Images/shopping_cart.png' alt='Shopping Cart' width'25' height='25'/></a>";
+							echo"<a href='view_wishlist.php'><img src='Images/wishlist.jpg' alt='Wishlist' width'25' height='25'/></a>";
+							echo"&ensp; <a href='view_cart.php'><img src='Images/shopping_cart.png' alt='Shopping Cart' width'25' height='25'/></a>";
                             echo"&ensp; <a href='user_profile.php'>";
                             echo  $_SESSION['username'] ;
                             echo " </a>";
@@ -98,16 +98,6 @@
 			</ul>
 			
 		</header>
-		<?php
-			echo "<div class='sidenav'>";
-		echo "<a href='view_books.php'><font color='black'><b>VIEW BOOKS</b></font></a>";
-		echo "<a href='it_books.php'><font color='black'>Information Technology</font></a>";
-		echo "<a href='cs_books.php'><font color='black'>Computer Science</font></a>";
-                echo "<a href='maths_books.php'><font color='black'>Mathematics</font></a>";
-		echo "<a href='science_books.php'><font color='black'>Science</font></a>";
-		echo "<a href='feedback.php'><font color='green'><b>FEEDBACK</b></font></a>";
-        echo "<a href='customerViewFeedback.php'><font color='green'><b>VIEW REPLIED FEEDBACK</b></font></a>";
-		echo"</div>";
-		?>
+		
 	</body>
 </html>

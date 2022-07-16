@@ -24,7 +24,7 @@
 	$row= mysqli_fetch_array($result, MYSQLI_ASSOC);
 	
 	
-	//edit user profile 
+	//edit book quantity
 	$sqlEditing="UPDATE `book` SET `book_quantity`= $new_stock WHERE `book`.`book_isbn13`='$book_isbn13'";
 		
 		//successful edited

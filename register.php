@@ -68,7 +68,7 @@
 			{
 				echo"<script>alert('Please enter your password')</script>";
 			}
-			else if (strlen($password) <='8') 
+			else if (strlen($password) <'8') 
 			{
 				echo "<script>alert('Enter your password at least contain 8 Characters!')</script>";
 			}
@@ -79,14 +79,6 @@
 			elseif(!preg_match("#[0-9]+#",$password)) 
 			{
 				echo "<script>alert('Enter password at least contain 1 Number !')</script>";
-			}
-			elseif(!preg_match("#[A-Z]+#",$password)) 
-			{
-				echo "<script>alert('Enter password at least contain 1 Capital Letter!')</script>";
-			}
-			elseif(!preg_match("#[a-z]+#",$password)) 
-			{
-				echo "<script>alert('Enter password at least contain 1 Lowercase Letter!')</script>";
 			}
 			
 			//comfirm password validation
@@ -173,7 +165,10 @@
 		?>
 		
 		<!-- Form Division -->
-
+		<br /><br />
+		
+			<div class = "form">
+		
 			<form method = "POST" action = "register.php">
 			
 				<h3><center>Register</center></h3>
@@ -228,7 +223,7 @@
 				<br>
 				
 				<!-- Comfirm Password -->
-
+				<label><span class = "red">*</span><i class="fa fa-lock" aria-hidden="true">&nbsp; Confirm Password : </i></label>
 				<br>
 				
 				<!-- Comfirm Password Visibility -->
@@ -240,7 +235,7 @@
 				
 				<!-- Policy -->
 				<p class="policy">When clicking Register button, you agree and consent to the processing
-
+						of your personal data in accordance with the terms of our Privacy Policy.
 						
 						<br><br>
 						
@@ -295,4 +290,5 @@
 		<!-- End Footer -->
 		
 	</body>
-
+	
+</html>

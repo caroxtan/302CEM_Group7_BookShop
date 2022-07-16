@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 
+
 <!--validation for admin id and password-->
 <?php
 	include("bookshop_database.php");
@@ -19,13 +20,12 @@
 		{
 			echo"<script>alert('Please enter your admin ID !')</script>";
 		}
-
 		//password validation
 		else if(empty($admin_password))
 		{
 			echo "<script>alert('Please enter the password !')</script>";
 		}
-		else if (strlen($_POST["admin_password"]) <='8') 
+		else if (strlen($_POST["admin_password"]) <'8') 
 		{
 			echo "<script>alert('Enter your password at least contain 8 Characters!')</script>";
 		}
@@ -36,14 +36,6 @@
 		elseif(!preg_match("#[0-9]+#",$_POST["admin_password"])) 
 		{
 			echo "<script>alert('Enter password at least contain 1 Number !')</script>";
-		}
-		elseif(!preg_match("#[A-Z]+#",$_POST["admin_password"])) 
-		{
-			echo "<script>alert('Enter password at least contain 1 Capital Letter!')</script>";
-		}
-		elseif(!preg_match("#[a-z]+#",$_POST["admin_password"])) 
-		{
-			echo "<script>alert('Enter password at least contain 1 Lowercase Letter!')</script>";
 		}
 		else if($valid)
 		{
@@ -56,7 +48,7 @@
 			{
 				$_SESSION['admin_id'] = $admin_id;
 				echo "<script>alert('You are now logged in.');
-
+					window.location='stocks_level.php'</script>";
 					return true;
 			
 			}else {
@@ -73,7 +65,7 @@
 		<title>Admin | Login</title>
 		<meta charset = "utf-8">
 		 <!-- CSS -->
-
+		<link rel = "stylesheet" href="register_login.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 	
 	</head>  <!-- end head -->
@@ -81,7 +73,15 @@
 	<body>
 		 <!-- include navibar.php -->
 		<?php
-
+			include('header_admin.php');
+		?>
+		
+		 <!-- make a login box -->
+		<div class = "form">
+			
+			 <!-- Use form for login details -->
+			<form method = "post" name = "adminlogin" action="adminlogin.php">
+				<h3><center>Admin Login</center></h3>
 				<!-- prompt user to enter username --> <!-- fa fa-user is icon of the username -->
 				<p><i class="fa fa-user" aria-hidden="true"> Admin ID</i></p>
 				<input type = "text" name = "admin_id" value= "<?php if(isset($_POST["admin_id"])) echo $_POST["admin_id"]; ?>"

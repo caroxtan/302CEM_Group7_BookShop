@@ -107,10 +107,10 @@
         <?php
             echo "<p><b>Feedback ID</b> </p>";
             echo"<input type='text' id='feedback_ID' name='feedback_ID' value='".$row['feedback_ID']."' readonly>";   
-         ?>
-        <br/><br/>
-        <p><b>Reply your customer feedback here!</b> </p>
-        <textarea name="admin_reply" id = "admin_reply" rows="8" cols="40" placeholder="Enter your reply here!"></textarea>
+        echo "<br/><br/>";
+        echo "<p><b>Reply your customer feedback here!</b> </p>";
+        echo "<textarea name='admin_reply' id = 'admin_reply' rows='8' cols='40' placeholder='Enter your reply here!'>".$row['admin_reply']."</textarea>";
+		?>
 
         <br/><br/>
          <input type="submit" name="submit" value="Submit Form">

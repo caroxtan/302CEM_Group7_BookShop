@@ -31,14 +31,6 @@
 		{
 			echo "<script>alert('Enter password at least contain 1 Number !')</script>";
 		}
-		elseif(!preg_match("#[A-Z]+#",$_POST["password"])) 
-		{
-			echo "<script>alert('Enter password at least contain 1 Capital Letter!')</script>";
-		}
-		elseif(!preg_match("#[a-z]+#",$_POST["password"])) 
-		{
-			echo "<script>alert('Enter password at least contain 1 Lowercase Letter!')</script>";
-		}
 		else if($valid)
 		{
 			//validation if the username had been record in database
@@ -50,6 +42,7 @@
 			{
 				$_SESSION['username'] = $username;
 				echo "<script>alert('You are now logged in.');
+					window.location='view_books.php'</script>";
 					return true;
 			
 			}else {
@@ -75,7 +68,8 @@
 	</head>
 	
 	<body>
-
+	
+		<!-- include header.php -->
 		<?php
 			include('header.php');
 		?>
@@ -117,7 +111,14 @@
 			</form>
 			
 		</div>
-
+		
+		<!--Footer-->
+		<?php
+			require('footer.php');
+		?>
+		<!--End Footer-->
+	
+	
 		<!-- javascript -->
 		<script> 
 			// Change the type of input to password or text 
@@ -134,6 +135,7 @@
 				} 
 			} 
 		</script> 
+		
 		
 	</body>
 </html>

@@ -3,7 +3,10 @@
 
 	<!-- Navibar -->
 	<?php
-
+		include("header_admin.php");
+    ?>
+	
+	<!-- CSS -->
 
 	<!-- End CSS -->
 	
@@ -11,7 +14,7 @@
 	<head>
 		<title> Admin Register </title>
 		<meta charset = "utf-8">
-
+		<link rel = "stylesheet" href="register_login.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">	
 	</head>
@@ -86,21 +89,12 @@
 			{
 				echo "<script>alert('Enter password at least contain 1 Number !')</script>";
 			}
-			elseif(!preg_match("#[A-Z]+#",$admin_password)) 
-			{
-				echo "<script>alert('Enter password at least contain 1 Capital Letter!')</script>";
-			}
-			elseif(!preg_match("#[a-z]+#",$admin_password)) 
-			{
-				echo "<script>alert('Enter password at least contain 1 Lowercase Letter!')</script>";
-			}
-			
 			//comfirm password validation
 			else if (empty($admin_CF_password))
 			{
 				echo"<script>alert('Please comfirm your password!')</script>";
 			}
-			else if (strlen($admin_CF_password) <='8') 
+			else if (strlen($admin_CF_password) <'8') 
 			{
 				echo "<script>alert('Enter your password at least contain 8 Characters!')</script>";
 			}
@@ -162,10 +156,12 @@
 		<!-- End Validation -->
 		
 		<!-- Form Division -->
-
+		<br /><br />
 		<div class = "form">
 		
 			<form method = "POST" action = "admin_register.php">
+			
+				<h1><center>ADMIN REGISTER</center></h1>
 			
 				<!-- Username -->
 				<label><span class ="red">*</span><i class="fa fa-user" aria-hidden="true">&nbsp; Admin ID : </i></label>
@@ -212,7 +208,7 @@
 				<br>
 				
 				<!-- Comfirm Password -->
-
+				<label><span class = "red">*</span><i class="fa fa-lock" aria-hidden="true">&nbsp; Confirm Password : </i></label>
 				<br>
 				
 				<!-- Comfirm Password Visibility -->

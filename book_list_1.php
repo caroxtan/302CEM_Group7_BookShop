@@ -58,27 +58,6 @@
 		$_SESSION["shopping_cart"] = $cartArray;
 		$status = "<div class='box'>book is added to your cart!</div>";
 	}else{
-		/**
-		if(!empty($_POST["book_quantity"])) {
-			
-			if(!empty($_SESSION["shopping_cart"])) {
-				if(in_array($book_id,array_keys($_SESSION["shopping_cart"]))) {
-					foreach($_SESSION["shopping_cart"] as $array_keys => $v) {
-							if($book_id == $array_keys) {
-								if(empty($_SESSION["shopping_cart"][$array_keys]["quantity"])) {
-									$_SESSION["shopping_cart"][$array_keys]["quantity"] = 0;
-								}
-								$_SESSION["shopping_cart"][$array_keys]["quantity"] += $_POST["quantity"];
-							}
-					}
-				} else {
-					$_SESSION["shopping_cart"] = array_merge($_SESSION["shopping_cart"],$cartArray);
-				}
-			} else {
-				$_SESSION["shopping_cart"] = $cartArray;
-			}
-		}**/
-	
 		$array_keys = array_keys($_SESSION["shopping_cart"]);
 		if(in_array($book_id,$array_keys)) {
 	 $status = "<div class='box' style='color:red;'>
